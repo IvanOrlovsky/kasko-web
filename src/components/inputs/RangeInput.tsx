@@ -136,7 +136,7 @@ export default function RangeInput({
 	};
 
 	return (
-		<Box className="flex flex-col items-start gap-[12px] p-0 w-1/2">
+		<Box className="flex flex-col items-start gap-[12px] p-0 w-full">
 			<h1 className="font-roboto font-semibold text-base leading-6">
 				{title}
 			</h1>
