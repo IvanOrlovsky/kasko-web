@@ -1,10 +1,12 @@
 import RangeInput from "@/components/inputs/RangeInput";
 import AutoComplete from "@/components/inputs/AutoComplete";
+import CheckBox from "@/components/inputs/CheckBox";
 import Regions from "../../public/datasets/Regions.json";
 
 export default function Home() {
 	return (
 		<main className="flex flex-col gap-[20px] items-center justify-center min-h-screen w-full">
+			<CheckBox label="Авто ещё не застраховано" />
 			<AutoComplete dataset={Regions} title="Регион использования ТС" />
 			<AutoComplete dataset={Regions} title="Регион использования ТС" />
 			<RangeInput
