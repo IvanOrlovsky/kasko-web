@@ -1,8 +1,10 @@
+"use client";
+
 import FormGroup from "@mui/material/FormGroup";
+import Grid from "@mui/material/Grid";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { SyntheticEvent } from "react";
-import { InfoOutlined } from "@mui/icons-material";
+import InfoHint from "../interactive-icons/InfoHint";
 
 type CheckBoxType = {
 	label: string;
@@ -10,9 +12,10 @@ type CheckBoxType = {
 	required?: boolean;
 	disabled?: boolean;
 	onChange?: (
-		event: SyntheticEvent<Element, Event>,
+		event: React.SyntheticEvent<Element, Event>,
 		checked: boolean
 	) => void;
+	hint?: string;
 };
 
 export default function CheckBox({
@@ -21,26 +24,32 @@ export default function CheckBox({
 	required,
 	disabled,
 	onChange,
+	hint,
 }: CheckBoxType) {
 	return (
 		<FormGroup>
-			<FormControlLabel
-				disabled={disabled}
-				required={required}
-				control={
-					<Checkbox
-						className="border-[2.5px] rounded-[100px] border-[#A2ADC1]"
-						defaultChecked={defaultChecked}
+			<Grid container alignItems="center">
+				<Grid item>
+					<FormControlLabel
+						className="font-roboto text-[#1F232B] text-base font-normal"
+						disabled={disabled}
+						required={required}
+						control={
+							<Checkbox
+								className="text-[#A2ADC1]"
+								defaultChecked={defaultChecked}
+							/>
+						}
+						label={label}
+						onChange={onChange}
 					/>
-				}
-				label={
-					<>
-						{label}{" "}
-						<InfoOutlined sx={{ color: "#8591A9" }}></InfoOutlined>
-					</>
-				}
-				onChange={onChange}
-			/>
+				</Grid>
+				{hint && (
+					<Grid item>
+						<InfoHint hint={hint} />
+					</Grid>
+				)}
+			</Grid>
 		</FormGroup>
 	);
 }
