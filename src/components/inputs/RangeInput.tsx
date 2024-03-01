@@ -50,6 +50,7 @@ type RangeInputType = {
 	isCurrency?: false;
 	isDate?: false;
 	marks?: Mark[];
+	step?: number;
 };
 
 type DateRangeType = {
@@ -59,6 +60,7 @@ type DateRangeType = {
 	marks: Mark[];
 	min?: undefined;
 	max?: undefined;
+	step?: undefined;
 };
 
 type CurrencyRangeType = {
@@ -68,6 +70,7 @@ type CurrencyRangeType = {
 	marks?: Mark[];
 	min: number;
 	max: number;
+	step?: number;
 };
 
 export default function RangeInput({
@@ -77,21 +80,60 @@ export default function RangeInput({
 	isDate,
 	min,
 	max,
+	step,
 }: RangeInputType | DateRangeType | CurrencyRangeType) {
-	const [rawValue, setRawValue] = useState("");
+	const defaultMarks = [
+		{
+			value: min,
+		},
+		{
+			value: max,
+		},
+	] as Mark[];
+
+	const minMarkValue = marks
+		? Math.min(
+				...marks.map(
+					(mark: { value: number; label?: string }) => mark.value
+				)
+		  )
+		: undefined;
+
+	const maxMarkValue = marks
+		? Math.max(
+				...marks.map(
+					(mark: { value: number; label?: string }) => mark.value
+				)
+		  )
+		: undefined;
+
+	const [inputValue, setInputValue] = useState(
+		!isDate
+			? min + ""
+			: marks
+			? (marks.find((mark) => mark.value === minMarkValue)
+					?.label as string)
+			: ""
+	);
+	const [sliderValue, setSliderValue] = useState(
+		min ? min : marks ? minMarkValue : 0
+	);
 
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const inputValue = event.target.value.replace(/\D/g, ""); // Удаляем все нецифровые символы
-		setRawValue(inputValue);
+		const numericValue = +event.target.value.replace(/\s/g, "");
+		setInputValue(numericValue.toString());
+		setSliderValue(numericValue);
 	};
 
 	const handleSliderChange = (event: Event, newValue: number | number[]) => {
-		setRawValue((newValue as number) + "");
+		isDate
+			? setInputValue(
+					marks.find((mark) => mark.value === newValue)
+						?.label as string
+			  )
+			: setInputValue(newValue + "");
+		setSliderValue(newValue as number);
 	};
-
-	const formattedValue = isCurrency
-		? rawValue.replace(/\B(?=(\d{3})+(?!\d))/g, " ")
-		: rawValue;
 
 	return (
 		<Box className="flex flex-col items-start gap-[12px] p-0 w-1/2">
@@ -100,45 +142,26 @@ export default function RangeInput({
 			</h1>
 			<Box className="flex flex-col order-2 self-stretch">
 				<input
-					value={formattedValue}
+					value={
+						isCurrency
+							? inputValue.replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+							: inputValue
+					}
 					type="text"
 					disabled={!!isDate}
 					onChange={handleInputChange}
 					className="font-roboto font-normal text-lg leading-[26px] appearance-none text-black box-border w-full border-2 focus:outline-none focus:border-blue-600 bg-[#F1F2F6] rounded-[4px] px-[16px] py-[5px]"
 				/>
 				<StyledSlider
-					value={Number(rawValue)}
+					value={Number(sliderValue)}
 					className="-mt-3 w-[90%] self-center"
 					onChange={handleSliderChange}
 					size="small"
 					aria-label="Small"
-					step={isDate ? null : 1}
-					marks={
-						marks
-							? marks
-							: ([
-									{
-										value: min,
-									},
-									{
-										value: max,
-									},
-							  ] as Mark[])
-					}
-					min={
-						min
-							? min
-							: marks
-							? Math.min(...marks.map((mark) => mark.value))
-							: undefined
-					}
-					max={
-						max
-							? max
-							: marks
-							? Math.max(...marks.map((mark) => mark.value))
-							: undefined
-					}
+					step={isDate ? null : step ? step : 1}
+					marks={marks ? marks : defaultMarks}
+					min={min ? min : marks ? minMarkValue : undefined}
+					max={max ? max : marks ? maxMarkValue : undefined}
 				/>
 			</Box>
 		</Box>
