@@ -1,10 +1,10 @@
 import RangeInput from "@/components/inputs/RangeInput";
 export default function Home() {
 	return (
-		<main className="flex items-center justify-center min-h-screen">
+		<main className="flex flex-col items-center justify-center min-h-screen">
 			<RangeInput
 				isDate={true}
-				title={"Текущая рыночная стоимость"}
+				title={"Срок кредитования"}
 				marks={[
 					{
 						value: 1,
@@ -19,6 +19,18 @@ export default function Home() {
 						label: "1 год",
 					},
 				]}
+			></RangeInput>
+			<RangeInput
+				title={"Текущая рыночная стоимость"}
+				isCurrency={true}
+				min={10000}
+				max={3000000}
+				step={1000}
+			></RangeInput>
+			<RangeInput
+				title={"Набор числа"}
+				min={0}
+				max={3000000}
 			></RangeInput>
 		</main>
 	);
