@@ -2,10 +2,11 @@ export default function MainLogo(props) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			width={228}
-			height={28}
+			width="100%"
+			height="100%"
+			viewBox="0 0 228 28"
 			fill="none"
-            {...props}
+			{...props}
 		>
 			<path
 				fill="#21145A"
