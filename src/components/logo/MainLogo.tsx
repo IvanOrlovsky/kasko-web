@@ -20,11 +20,6 @@ export default function MainLogo(props) {
 				strokeWidth={1.188}
 				d="M78.512 6.518V20.07"
 			/>
-			<defs>
-				<clipPath id="a">
-					<path fill="#fff" d="M88.805 6.518h101.2v13.57h-101.2z" />
-				</clipPath>
-			</defs>
 		</svg>
 	);
 }
