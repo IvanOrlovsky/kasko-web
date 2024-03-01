@@ -1,11 +1,30 @@
+"use client";
+
+import Regions from "../../public/datasets/Regions.json";
+import { useState } from "react";
+
 import RangeInput from "@/components/inputs/RangeInput";
 import AutoComplete from "@/components/inputs/AutoComplete";
 import CheckBox from "@/components/inputs/CheckBox";
-import Regions from "../../public/datasets/Regions.json";
+import NavChip from "@/components/data-display/NavChip";
 
 export default function Home() {
+	const [active, setActive] = useState(false);
+
 	return (
 		<main className="p-10 flex flex-col gap-5 items-center justify-center min-h-screen w-full">
+			<NavChip
+				letterInCircle="2"
+				label="Авто"
+				disabled={true}
+				active={active}
+			/>
+			<NavChip
+				letterInCircle="1"
+				label="Авто"
+				active={active}
+				onClick={() => setActive(!active)}
+			/>
 			<CheckBox label="Авто ещё не застраховано" />
 			<CheckBox
 				label="Авто ещё не застраховано"
