@@ -28,6 +28,9 @@ dependencies:
     version: 18.2.0(react@18.2.0)
 
 devDependencies:
+  '@types/autosuggest-highlight':
+    specifier: ^3.2.3
+    version: 3.2.3
   '@types/node':
     specifier: ^20
     version: 20.11.23
@@ -40,6 +43,9 @@ devDependencies:
   autoprefixer:
     specifier: ^10.0.1
     version: 10.4.17(postcss@8.4.35)
+  autosuggest-highlight:
+    specifier: ^3.3.4
+    version: 3.3.4
   eslint:
     specifier: ^8
     version: 8.57.0
@@ -654,6 +660,10 @@ packages:
       tslib: 2.6.2
     dev: false
 
+  /@types/autosuggest-highlight@3.2.3:
+    resolution: {integrity: sha512-8Mb21KWtpn6PvRQXjsKhrXIcxbSloGqNH50RntwGeJsGPW4xvNhfml+3kKulaKpO/7pgZfOmzsJz7VbepArlGQ==}
+    dev: true
+
   /@types/json5@0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
@@ -953,6 +963,12 @@ packages:
       picocolors: 1.0.0
       postcss: 8.4.35
       postcss-value-parser: 4.2.0
+    dev: true
+
+  /autosuggest-highlight@3.3.4:
+    resolution: {integrity: sha512-j6RETBD2xYnrVcoV1S5R4t3WxOlWZKyDQjkwnggDPSjF5L4jV98ZltBpvPvbkM1HtoSe5o+bNrTHyjPbieGeYA==}
+    dependencies:
+      remove-accents: 0.4.4
     dev: true
 
   /available-typed-arrays@1.0.7:
@@ -2749,6 +2765,10 @@ packages:
       define-properties: 1.2.1
       es-errors: 1.3.0
       set-function-name: 2.0.2
+    dev: true
+
+  /remove-accents@0.4.4:
+    resolution: {integrity: sha512-EpFcOa/ISetVHEXqu+VwI96KZBmq+a8LJnGkaeFw45epGlxIZz5dhEEnNZMsQXgORu3qaMoLX4qJCzOik6ytAg==}
     dev: true
 
   /resolve-from@4.0.0:
