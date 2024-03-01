@@ -5,8 +5,12 @@ import Regions from "../../public/datasets/Regions.json";
 
 export default function Home() {
 	return (
-		<main className="flex flex-col gap-[20px] items-center justify-center min-h-screen w-full">
+		<main className="p-10 flex flex-col gap-5 items-center justify-center min-h-screen w-full">
 			<CheckBox label="Авто ещё не застраховано" />
+			<CheckBox
+				label="Авто ещё не застраховано"
+				hint="Некая дополнительная информация"
+			/>
 			<AutoComplete dataset={Regions} title="Регион использования ТС" />
 			<AutoComplete dataset={Regions} title="Регион использования ТС" />
 			<RangeInput
