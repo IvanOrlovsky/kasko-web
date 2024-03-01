@@ -8,6 +8,7 @@ import AutoComplete from "@/components/inputs/AutoComplete";
 import CheckBox from "@/components/inputs/CheckBox";
 import NavChip from "@/components/data-display/NavChip";
 
+
 export default function Home() {
 	const [active, setActive] = useState(false);
 
