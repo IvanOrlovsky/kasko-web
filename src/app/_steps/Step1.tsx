@@ -54,8 +54,6 @@ export default function Step1() {
 		},
 	});
 
-	const { handleSubmit } = form;
-
 	const { setStep } = useMainContext();
 
 	const onSubmit = (data: FormValues) => setStep((prev) => prev + 1);
