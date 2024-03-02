@@ -1,3 +1,5 @@
+"use client";
+
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import NavChip from "@/components/data-display/NavChip";
 
