@@ -1,5 +1,6 @@
 "use client";
 
+import { useFormContext, Controller } from "react-hook-form";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
@@ -44,6 +45,7 @@ const StyledSlider = styled(Slider)({
 type Mark = { value: number; label?: string };
 
 type RangeInputType = {
+	name: string;
 	title: string;
 	min: number;
 	max: number;
@@ -54,6 +56,7 @@ type RangeInputType = {
 };
 
 type DateRangeType = {
+	name: string;
 	title: string;
 	isDate: true;
 	isCurrency?: false;
@@ -64,6 +67,7 @@ type DateRangeType = {
 };
 
 type CurrencyRangeType = {
+	name: string;
 	title: string;
 	isCurrency: true;
 	isDate?: false;
@@ -81,6 +85,7 @@ export default function RangeInput({
 	min,
 	max,
 	step,
+	name,
 }: RangeInputType | DateRangeType | CurrencyRangeType) {
 	const defaultMarks = [
 		{
@@ -135,33 +140,54 @@ export default function RangeInput({
 		setSliderValue(newValue as number);
 	};
 
+	const { control } = useFormContext();
+
 	return (
 		<Box className="flex flex-col items-start gap-[12px] p-0 w-full">
 			<h1 className="font-roboto font-semibold text-base leading-6">
 				{title}
 			</h1>
 			<Box className="flex flex-col order-2 self-stretch">
-				<input
-					value={
-						isCurrency
-							? inputValue.replace(/\B(?=(\d{3})+(?!\d))/g, " ")
-							: inputValue
-					}
-					type="text"
-					disabled={!!isDate}
-					onChange={handleInputChange}
-					className="font-roboto font-normal text-lg leading-[26px] appearance-none text-black box-border w-full border-2 focus:outline-none focus:border-blue-600 bg-[#F1F2F6] rounded-[4px] px-[16px] py-[5px]"
+				<Controller
+					name={name}
+					control={control}
+					defaultValue={isDate ? "" : min}
+					render={({ field }) => (
+						<input
+							{...field}
+							value={
+								isCurrency
+									? inputValue.replace(
+											/\B(?=(\d{3})+(?!\d))/g,
+											" "
+									  )
+									: inputValue
+							}
+							type="text"
+							disabled={!!isDate}
+							onChange={handleInputChange}
+							className="font-roboto font-normal text-lg leading-[26px] appearance-none text-black box-border w-full border-2 focus:outline-none focus:border-blue-600 bg-[#F1F2F6] rounded-[4px] px-[16px] py-[5px]"
+						/>
+					)}
 				/>
-				<StyledSlider
-					value={Number(sliderValue)}
-					className="-mt-3 w-[90%] self-center"
-					onChange={handleSliderChange}
-					size="small"
-					aria-label="Small"
-					step={isDate ? null : step ? step : 1}
-					marks={marks ? marks : defaultMarks}
-					min={min ? min : marks ? minMarkValue : undefined}
-					max={max ? max : marks ? maxMarkValue : undefined}
+				<Controller
+					name={`${title.toLowerCase()}Slider`}
+					control={control}
+					defaultValue={min}
+					render={({ field }) => (
+						<StyledSlider
+							{...field}
+							value={Number(sliderValue)}
+							className="-mt-3 w-[90%] self-center"
+							onChange={handleSliderChange}
+							size="small"
+							aria-label="Small"
+							step={isDate ? null : step ? step : 1}
+							marks={marks ? marks : defaultMarks}
+							min={min ? min : marks ? minMarkValue : undefined}
+							max={max ? max : marks ? maxMarkValue : undefined}
+						/>
+					)}
 				/>
 			</Box>
 		</Box>
