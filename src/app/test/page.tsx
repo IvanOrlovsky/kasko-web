@@ -25,8 +25,9 @@ export default function Test() {
 				active={active}
 				onClick={() => setActive(!active)}
 			/>
-			<CheckBox label="Авто ещё не застраховано" />
+			<CheckBox name="" label="Авто ещё не застраховано" />
 			<CheckBox
+				name=""
 				label="Авто ещё не застраховано"
 				hint="Некая дополнительная информация"
 			/>
