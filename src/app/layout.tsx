@@ -1,5 +1,6 @@
 import "./globals.css";
 import Header from "@/components/Header";
+import MainContextProvider from "@/contexts/MainContext";
 
 export default function RootLayout({
 	children,
@@ -10,7 +11,7 @@ export default function RootLayout({
 		<html lang="ru">
 			<body className="bg-[#F1F2F6]">
 				<Header />
-				{children}
+				<MainContextProvider>{children}</MainContextProvider>
 			</body>
 		</html>
 	);
