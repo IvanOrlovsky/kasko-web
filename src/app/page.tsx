@@ -3,12 +3,19 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import NavChip from "@/components/data-display/NavChip";
 
+import { useEffect } from "react";
 import Step1 from "./_steps/Step1";
 
 import { useMainContext } from "@/contexts/MainContext";
+import Step2 from "./_steps/Step2";
+import Footer from "@/components/Footer";
 
 export default function Home() {
 	const { step, setStep } = useMainContext();
+
+	// useEffect(() => {
+	// 	setStep(1);
+	// });
 
 	return (
 		<main className="flex flex-col gap-[16px]  overflow-hidden">
@@ -34,6 +41,8 @@ export default function Home() {
 				/>
 			</div>
 			{step === 1 && <Step1 />}
+			{step === 1 && <Step2 />}
+			{step > 1 && <Footer />}
 		</main>
 	);
 }
