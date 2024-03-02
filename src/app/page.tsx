@@ -13,13 +13,16 @@ import Footer from "@/components/Footer";
 export default function Home() {
 	const { step, setStep } = useMainContext();
 
-	useEffect(() => {
-		setStep(2);
-	});
-
 	return (
 		<main className="flex flex-col gap-[16px]  overflow-hidden">
-			<span className="font-roboto w-fit text-[#1698D9]  mx-[16px] text-md sm:text-xl hover:cursor-pointer hover:text-[#19437a]">
+			<span
+				className="font-roboto w-fit text-[#1698D9]  mx-[16px] text-md sm:text-xl hover:cursor-pointer hover:text-[#19437a]"
+				onClick={() => {
+					if (step > 1) {
+						setStep((prev) => prev - 1);
+					}
+				}}
+			>
 				<ArrowBackIcon sx={{ color: "#1698D9" }} />
 				Назад
 			</span>
@@ -37,6 +40,11 @@ export default function Home() {
 				<NavChip
 					letterInCircle="4"
 					label="Персональные данные"
+					active={step === 4}
+				/>
+				<NavChip
+					letterInCircle="5"
+					label="Оплата"
 					active={step === 4}
 				/>
 			</div>
