@@ -7,7 +7,7 @@ import { useFormContext } from "react-hook-form";
 import AutoData from "../../../../public/datasets/AutoData.json";
 
 export default function Auto() {
-	const { register, watch, trigger } = useFormContext();
+	const { watch, trigger } = useFormContext();
 
 	return (
 		<FormBlock title="Автомобиль">
@@ -55,16 +55,69 @@ export default function Auto() {
 							required={watch("isCarRegistered")}
 							requiredMsg="Вы не ввели модель авто!"
 						></SimpleSelect>
-						<button
-							type="button"
-							className="bg-[#1698D9] hover:bg-[#0e81bb] active:bg-[#0a5880] rounded-2xl mb-5 py-[15px] font-roboto text-white font-semibold text-lg"
-							onClick={() => {
-								trigger("made");
-								trigger("model");
-							}}
-						>
-							Найти
-						</button>
+						<SimpleSelect
+							data={AutoData.map((auto) =>
+								auto.releaseYear.toString()
+							)}
+							name="releaseYear"
+							label="Год выпуска"
+							required={watch("isCarRegistered")}
+							requiredMsg="Вы не ввели год выпуска авто!"
+						></SimpleSelect>
+						<SimpleSelect
+							data={AutoData.map((auto) => auto.power)}
+							name="power"
+							label="Мощность"
+							required={watch("isCarRegistered")}
+							requiredMsg="Вы не ввели год мощность авто!"
+						></SimpleSelect>
+						<SimpleInput
+							name="todayCost"
+							label="Текущая рыночная стоимость"
+							pattern={/^\d+$/}
+							patternMsg="Вы ввели не число!"
+							required={!watch("isCarRegistered")}
+							requiredMsg="Если авто зарегистрировано, то необходимо ввести госномер."
+						/>
+						<section className="flex flex-col gap-3">
+							<h2 className="font-roboto font-normal text-base text-[#737B8C]">
+								Не обязательно для заполнения, но поможет лучше
+								уточнить стоимость вашего автомобиля
+							</h2>
+							<SimpleSelect
+								data={AutoData.map((auto) => auto.bodyType)}
+								name="bodyType"
+								label="Тип кузова"
+								required={false}
+							></SimpleSelect>
+							<SimpleSelect
+								data={AutoData.map((auto) => auto.gearBoxType)}
+								name="gearBoxType"
+								label="Тип КПП"
+								required={false}
+							></SimpleSelect>
+							<SimpleSelect
+								data={AutoData.map((auto) => auto.engine)}
+								name="engine"
+								label="Двигатель"
+								required={false}
+							></SimpleSelect>
+							<SimpleSelect
+								data={AutoData.map((auto) => auto.modification)}
+								name="modification"
+								label="Модификация"
+								required={false}
+							></SimpleSelect>
+							<div className="mt-4">
+								<SimpleInput
+									name="mileage"
+									label="Приблизительный пробег, км"
+									pattern={/^\d+$/}
+									patternMsg="Вы ввели не число!"
+									required={false}
+								/>
+							</div>
+						</section>
 					</>
 				)}
 
