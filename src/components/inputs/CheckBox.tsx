@@ -5,9 +5,11 @@ import Grid from "@mui/material/Grid";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import InfoHint from "../interactive-icons/InfoHint";
+import { useFormContext } from "react-hook-form";
 
 type CheckBoxType = {
 	label: string;
+	name: string;
 	defaultChecked?: boolean;
 	required?: boolean;
 	disabled?: boolean;
@@ -25,7 +27,9 @@ export default function CheckBox({
 	disabled,
 	onChange,
 	hint,
+	name,
 }: CheckBoxType) {
+	const { register } = useFormContext();
 	return (
 		<FormGroup>
 			<Grid container alignItems="center">
@@ -36,6 +40,7 @@ export default function CheckBox({
 						required={required}
 						control={
 							<Checkbox
+								{...register(name)}
 								className="text-[#A2ADC1]"
 								defaultChecked={defaultChecked}
 							/>
