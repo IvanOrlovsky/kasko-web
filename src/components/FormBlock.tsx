@@ -22,7 +22,7 @@ export default function FormBlock({
 	children,
 }: SubmitFormBlockProps | FormBlockProps) {
 	return (
-		<section className="flex flex-col gap-3 rounded-3xl bg-white pt-5 px-4 pb-28">
+		<section className="flex flex-col gap-3 rounded-3xl bg-white pt-5 px-4 pb-5">
 			<h1 className="font-roboto text-xl sm:text-2xl w-fit font-semibold text-[#1F232B] mb-4">
 				{title}
 			</h1>
