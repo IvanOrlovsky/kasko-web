@@ -32,8 +32,8 @@ export default function NavChip({
 			onClick={handleClick}
 			className={
 				!active
-					? "bg-transparent hover:bg-transparent"
-					: "bg-[#C5EAFC] hover:bg-[#C5EAFC]"
+					? "bg-transparent hover:bg-transparent text-md sm:text-xl"
+					: "bg-[#C5EAFC] hover:bg-[#C5EAFC] font-bold text-md sm:text-xl"
 			}
 			avatar={
 				<Avatar sx={{ backgroundColor: "white" }}>
