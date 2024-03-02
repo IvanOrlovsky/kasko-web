@@ -1,8 +1,9 @@
 "use client";
 
 import { TextField } from "@mui/material";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, Controller } from "react-hook-form";
 import { styled } from "@mui/material";
+import InputMask from "react-input-mask";
 
 const StyledSimpleInput = styled(TextField)({
 	height: "3em",
@@ -20,7 +21,7 @@ type SimpleInputProps = {
 	requiredMsg?: string;
 	helper?: string;
 	placeholder?: string;
-	pattern?: RegExp;
+	mask?: string;
 	patternMsg?: string;
 };
 
@@ -31,35 +32,54 @@ export default function SimpleInput({
 	helper,
 	requiredMsg,
 	placeholder,
-	pattern,
-	patternMsg,
+	mask,
 }: SimpleInputProps) {
 	const {
-		register,
+		control,
 		formState: { errors },
 		clearErrors,
 	} = useFormContext();
 
 	return (
-		<StyledSimpleInput
-			helperText={
-				errors[name]?.message
-					? (errors[name]?.message as string)
-					: helper
-			}
-			placeholder={placeholder}
-			label={label}
-			required={required}
-			variant="filled"
-			{...register(name, {
-				onChange: () => clearErrors(name),
-				required: required ? requiredMsg : false,
-				pattern: pattern
-					? { value: pattern, message: patternMsg as string }
-					: undefined,
-			})}
-			error={!!errors[name]?.message}
-			className="mb-12"
-		></StyledSimpleInput>
+		<Controller
+			control={control}
+			name={name}
+			rules={{
+				required: required
+					? requiredMsg || "Данное поле обязательно"
+					: false,
+			}}
+			render={({ field }) => (
+				<InputMask
+					mask={mask}
+					maskChar=" "
+					value={field.value}
+					onChange={field.onChange}
+				>
+					{(inputProps: any) => (
+						<StyledSimpleInput
+							{...inputProps}
+							helperText={
+								errors[name]?.message
+									? String(errors[name]?.message)
+									: helper
+							}
+							placeholder={placeholder}
+							label={label}
+							required={required}
+							fullWidth={true}
+							variant="filled"
+							onChange={(e) => {
+								field.onChange(e);
+								clearErrors(name);
+							}}
+							value={field.value}
+							error={!!errors[name]?.message}
+							className="mb-12"
+						/>
+					)}
+				</InputMask>
+			)}
+		/>
 	);
 }
