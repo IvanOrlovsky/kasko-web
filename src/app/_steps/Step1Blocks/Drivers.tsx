@@ -1,0 +1,32 @@
+import FormBlock from "@/components/FormBlock";
+import SimpleInput from "@/components/inputs/SimpleInput";
+import SimpleSelect from "@/components/inputs/SimpleSelect";
+import { useFormContext } from "react-hook-form";
+
+export default function DocTS() {
+	const { watch } = useFormContext();
+
+	if (watch("isCarRegistered")) {
+		return (
+			<FormBlock
+				title="Водители"
+				forForm="auto_form"
+				hasSubmitBtn={true}
+				submitBtnLabel="Продолжить"
+			>
+				<div className="flex flex-col gap-4">
+					<SimpleInput
+						name="minDriversAge"
+						label="Минимальный возраст водителей"
+						required={!watch("isCarRegistered")}
+					/>
+					<SimpleInput
+						name="minDriversExp"
+						label="Минимальный стаж водителей"
+						required={!watch("isCarRegistered")}
+					/>
+				</div>
+			</FormBlock>
+		);
+	}
+}
