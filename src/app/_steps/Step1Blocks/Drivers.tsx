@@ -1,9 +1,8 @@
 import FormBlock from "@/components/FormBlock";
 import SimpleInput from "@/components/inputs/SimpleInput";
-import SimpleSelect from "@/components/inputs/SimpleSelect";
 import { useFormContext } from "react-hook-form";
 
-export default function DocTS() {
+export default function Drivers() {
 	const { watch } = useFormContext();
 
 	if (watch("isCarRegistered")) {
