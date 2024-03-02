@@ -1,7 +1,6 @@
 "use client";
 
 import { useForm, FormProvider } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 import { useMainContext } from "@/contexts/MainContext";
 import Auto from "./Step1Blocks/Auto";
 import DocTS from "./Step1Blocks/DocTS";
@@ -69,7 +68,6 @@ export default function Step1() {
 				<DocTS />
 				<Drivers />
 			</form>
-			<DevTool control={form.control} />
 		</FormProvider>
 	);
 }

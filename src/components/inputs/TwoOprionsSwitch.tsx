@@ -13,11 +13,8 @@ export default function TwoOptionsSwitch({
 	option2,
 }: TwoOptionsSwitchProps) {
 	const { register, setValue, watch } = useFormContext();
-	const selectedOption = watch(name); // Получаем текущее значение из react-hook-form
+	const selectedOption = watch(name); 
 
-	const handleTabChange = (value: string) => {
-		setValue(name, value);
-	};
 
 	return (
 		<>
@@ -26,7 +23,7 @@ export default function TwoOptionsSwitch({
 				{...register(name)}
 				value={selectedOption || ""}
 			/>
-			<Tabs defaultValue={option1} onSelect={handleTabChange}>
+			<Tabs defaultValue={option1}>
 				<TabsList>
 					<TabsTrigger value={option1}>{option1}</TabsTrigger>
 					<TabsTrigger value={option2}>{option2}</TabsTrigger>
