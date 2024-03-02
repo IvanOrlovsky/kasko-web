@@ -53,7 +53,7 @@ export default function Step1() {
 		},
 	});
 
-	const { register, handleSubmit, trigger, watch } = form;
+	const { handleSubmit } = form;
 
 	const { setStep } = useMainContext();
 
@@ -61,7 +61,7 @@ export default function Step1() {
 
 	return (
 		<FormProvider {...form}>
-			<form className="flex flex-col gap-4">
+			<form id="auto_form" className="flex flex-col gap-4">
 				<Auto />
 				<DocTS />
 			</form>
