@@ -4,7 +4,7 @@ import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 
 export default function Header() {
 	return (
-		<header className="flex-no-wrap justify-between sticky top-0 flex w-full bg-[#ffffff] px-5 py-5 z-10 mb-[16px]">
+		<header className="flex shrink-0 justify-between sticky top-0  min-w-full bg-[#ffffff] px-5 py-5 z-10 mb-[16px]">
 			<div className=" ">
 				<MainLogo />
 			</div>
