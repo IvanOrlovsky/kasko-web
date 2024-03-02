@@ -34,29 +34,31 @@ export default function SimpleInput({
 	pattern,
 	patternMsg,
 }: SimpleInputProps) {
-	const { register, setValue } = useFormContext();
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		let value = event.target.value;
+	const {
+		register,
+		formState: { errors },
+		clearErrors,
+	} = useFormContext();
 
-		if (pattern) {
-			value = value.replace(pattern, "");
-		}
-
-		setValue(name, value);
-	};
 	return (
 		<StyledSimpleInput
-			helperText={helper}
+			helperText={
+				errors[name]?.message
+					? (errors[name]?.message as string)
+					: helper
+			}
 			placeholder={placeholder}
 			label={label}
 			required={required}
 			variant="filled"
 			{...register(name, {
+				onChange: () => clearErrors(name),
 				required: required ? requiredMsg : false,
 				pattern: pattern
 					? { value: pattern, message: patternMsg as string }
 					: undefined,
 			})}
+			error={!!errors[name]?.message}
 			className="mb-12"
 		></StyledSimpleInput>
 	);
