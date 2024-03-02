@@ -5,6 +5,7 @@ import { DevTool } from "@hookform/devtools";
 import { useMainContext } from "@/contexts/MainContext";
 import Auto from "./Step1Blocks/Auto";
 import DocTS from "./Step1Blocks/DocTS";
+import Drivers from "./Step1Blocks/Drivers";
 
 type FormValues = {
 	isCarRegistered: boolean;
@@ -64,6 +65,7 @@ export default function Step1() {
 			<form id="auto_form" className="flex flex-col gap-4">
 				<Auto />
 				<DocTS />
+				<Drivers />
 			</form>
 			<DevTool control={form.control} />
 		</FormProvider>
