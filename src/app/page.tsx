@@ -1,68 +1,21 @@
-"use client";
-
-import Regions from "../../public/datasets/Regions.json";
-import { useState } from "react";
-
-import RangeInput from "@/components/inputs/RangeInput";
-import AutoComplete from "@/components/inputs/AutoComplete";
-import CheckBox from "@/components/inputs/CheckBox";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import NavChip from "@/components/data-display/NavChip";
 
-
 export default function Home() {
-	const [active, setActive] = useState(false);
-
 	return (
-		<main className="p-10 flex flex-col gap-5 items-center justify-center min-h-screen w-full">
-			<NavChip
-				letterInCircle="2"
-				label="Авто"
-				disabled={true}
-				active={active}
-			/>
-			<NavChip
-				letterInCircle="1"
-				label="Авто"
-				active={active}
-				onClick={() => setActive(!active)}
-			/>
-			<CheckBox label="Авто ещё не застраховано" />
-			<CheckBox
-				label="Авто ещё не застраховано"
-				hint="Некая дополнительная информация"
-			/>
-			<AutoComplete dataset={Regions} title="Регион использования ТС" />
-			<AutoComplete dataset={Regions} title="Регион использования ТС" />
-			<RangeInput
-				isDate={true}
-				title={"Срок кредитования"}
-				marks={[
-					{
-						value: 1,
-						label: "1 месяц",
-					},
-					{
-						value: 6,
-						label: "6 месяцев",
-					},
-					{
-						value: 12,
-						label: "1 год",
-					},
-				]}
-			></RangeInput>
-			<RangeInput
-				title={"Текущая рыночная стоимость"}
-				isCurrency={true}
-				min={10000}
-				max={3000000}
-				step={1000}
-			></RangeInput>
-			<RangeInput
-				title={"Набор числа"}
-				min={0}
-				max={3000000}
-			></RangeInput>
+		<main className="flex flex-col gap-[16px]">
+			<span className="font-roboto w-fit text-[#1698D9]  mx-[16px] text-md sm:text-xl hover:cursor-pointer hover:text-[#19437a]">
+				<ArrowBackIcon sx={{ color: "#1698D9" }} />
+				Назад
+			</span>
+			<h1 className="font-roboto w-fit font-semibold text-2xl sm:text-4xl mx-[16px]">
+				Каско
+			</h1>
+			<div className="flex flex-row w-full mx-[16px] gap-1">
+				<NavChip letterInCircle="1" label="Авто" active={true} />
+				<NavChip letterInCircle="2" label="Параметры" active={false} />
+				<NavChip letterInCircle="3" label="Риски" active={false} />
+			</div>
 		</main>
 	);
 }
