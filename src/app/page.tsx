@@ -13,9 +13,9 @@ import Footer from "@/components/Footer";
 export default function Home() {
 	const { step, setStep } = useMainContext();
 
-	// useEffect(() => {
-	// 	setStep(1);
-	// });
+	useEffect(() => {
+		setStep(2);
+	});
 
 	return (
 		<main className="flex flex-col gap-[16px]  overflow-hidden">
@@ -41,7 +41,7 @@ export default function Home() {
 				/>
 			</div>
 			{step === 1 && <Step1 />}
-			{step === 1 && <Step2 />}
+			{step === 2 && <Step2 />}
 			{step > 1 && <Footer />}
 		</main>
 	);
