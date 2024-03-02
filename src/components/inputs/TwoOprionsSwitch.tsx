@@ -26,7 +26,7 @@ export default function TwoOptionsSwitch({
 				{...register(name)}
 				value={selectedOption || ""}
 			/>
-			<Tabs defaultValue={option1} onChange={handleTabChange}>
+			<Tabs defaultValue={option1} onSelect={handleTabChange}>
 				<TabsList>
 					<TabsTrigger value={option1}>{option1}</TabsTrigger>
 					<TabsTrigger value={option2}>{option2}</TabsTrigger>
