@@ -62,7 +62,11 @@ export default function Step1() {
 
 	return (
 		<FormProvider {...form}>
-			<form id="auto_form" className="flex flex-col gap-4">
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				id="auto_form"
+				className="flex flex-col gap-4"
+			>
 				<Auto />
 				<DocTS />
 				<Drivers />
