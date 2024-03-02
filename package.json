@@ -21,6 +21,7 @@
     "sweetalert2": "^11.10.5"
   },
   "devDependencies": {
+    "@hookform/devtools": "^4.3.1",
     "@types/autosuggest-highlight": "^3.2.3",
     "@types/node": "^20",
     "@types/react": "^18",
