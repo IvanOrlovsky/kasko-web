@@ -1,5 +1,6 @@
 "use client";
 
+import { useFormContext, Controller } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import parse from "autosuggest-highlight/parse";
@@ -22,45 +23,62 @@ const StyledAutocomplete = styled(Autocomplete)({
 });
 
 type AutoCompleteType = {
+	name: string;
 	title: string;
 	dataset: unknown[];
 };
 
-export default function AutoComplete({ dataset, title }: AutoCompleteType) {
-	return (
-		<StyledAutocomplete
-			sx={{ width: "100%" }}
-			options={dataset}
-			noOptionsText="Не найдено..."
-			groupBy={(option) => option.label || "Остальные"}
-			popupIcon={false}
-			getOptionLabel={(option) => option.region}
-			renderInput={(params) => (
-				<TextField variant="filled" {...params} label={title} />
-			)}
-			renderOption={(props, option, { inputValue }) => {
-				const matches = match(option.region, inputValue, {
-					insideWords: true,
-				});
-				const parts = parse(option.region, matches);
+export default function AutoComplete({
+	dataset,
+	title,
+	name,
+}: AutoCompleteType) {
+	const { control } = useFormContext();
 
-				return (
-					<li {...props}>
-						<div>
-							{parts.map((part, index) => (
-								<span
-									key={index}
-									style={{
-										fontWeight: part.highlight ? 700 : 400,
-									}}
-								>
-									{part.text}
-								</span>
-							))}
-						</div>
-					</li>
-				);
-			}}
+	return (
+		<Controller
+			name={name}
+			control={control}
+			defaultValue={null}
+			render={({ field }) => (
+				<StyledAutocomplete
+					{...field}
+					sx={{ width: "100%" }}
+					options={dataset}
+					noOptionsText="Не найдено..."
+					groupBy={(option) => option.label || "Остальные"}
+					popupIcon={false}
+					getOptionLabel={(option) => option.region}
+					renderInput={(params) => (
+						<TextField variant="filled" {...params} label={title} />
+					)}
+					renderOption={(props, option, { inputValue }) => {
+						const matches = match(option.region, inputValue, {
+							insideWords: true,
+						});
+						const parts = parse(option.region, matches);
+
+						return (
+							<li {...props}>
+								<div>
+									{parts.map((part, index) => (
+										<span
+											key={index}
+											style={{
+												fontWeight: part.highlight
+													? 700
+													: 400,
+											}}
+										>
+											{part.text}
+										</span>
+									))}
+								</div>
+							</li>
+						);
+					}}
+				/>
+			)}
 		/>
 	);
 }
