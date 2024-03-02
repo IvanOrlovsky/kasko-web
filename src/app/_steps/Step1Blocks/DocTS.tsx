@@ -8,7 +8,7 @@ export default function DocTS() {
 
 	return (
 		<FormBlock title="Документ ТС">
-			<>
+			<div className="flex flex-col gap-4">
 				<SimpleSelect
 					data={[
 						"ПТС",
@@ -34,9 +34,15 @@ export default function DocTS() {
 					pattern={/^\d+$/}
 					patternMsg="Вы ввели не число!"
 					required={!watch("isCarRegistered")}
-					requiredMsg="Если авто зарегистрировано, то необходимо ввести госномер."
+					requiredMsg="Необходимо ввести текущую рыночную стоимость."
 				/>
-			</>
+				<SimpleInput
+					name="VIN"
+					label="VIN"
+					required={!watch("isCarRegistered")}
+					requiredMsg="Необходимо ввести VIN номер."
+				/>
+			</div>
 		</FormBlock>
 	);
 }
