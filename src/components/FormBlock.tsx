@@ -31,7 +31,7 @@ export default function FormBlock({
 				<button
 					type="submit"
 					form={forForm}
-					className="bg-[#1698D9] hover:bg-[#0e81bb] active:bg-[#0a5880] rounded-2xl mb-5 font-roboto text-white font-semibold text-lg"
+					className="bg-[#1698D9] hover:bg-[#0e81bb] active:bg-[#0a5880]  py-[15px] rounded-2xl mb-5 font-roboto text-white font-semibold text-lg"
 				>
 					{submitBtnLabel}
 				</button>
