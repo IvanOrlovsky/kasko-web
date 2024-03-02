@@ -3,7 +3,7 @@
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, Controller } from "react-hook-form";
 import { styled } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import { useState } from "react";
@@ -33,41 +33,38 @@ export default function SimpleSelect({
 	requiredMsg,
 }: SimpleSelectProps) {
 	const {
-		register,
 		formState: { errors },
+		control,
 	} = useFormContext();
 
-	const [value, setValue] = useState("");
-
-	const handleChange = (event: SelectChangeEvent) => {
-		setValue(event.target.value);
-	};
-
 	return (
-		<FormControl variant="filled">
+		<FormControl variant="filled" sx={{ minWidth: 120 }}>
 			<InputLabel id={name + "_label"}>{label}</InputLabel>
-			<StyledSimpleSelect
-				id={name}
-				labelId={name + "_label"}
-				required={required}
-				value={value}
-				{...register(name, {
-					onChange: handleChange,
-					required: required ? requiredMsg : false,
-				})}
-				error={!!errors[name]?.message}
-				className="mb-12"
-			>
-				{data.map((option) => (
-					<MenuItem value={option}>{option}</MenuItem>
-				))}
-			</StyledSimpleSelect>
-
-			{errors[name]?.message && (
-				<FormHelperText error>
-					{errors[name]?.message as string}
-				</FormHelperText>
-			)}
+			<Controller
+				control={control}
+				name={name}
+				rules={{ required: required && requiredMsg }}
+				render={({ field }) => (
+					<>
+						<Select
+							{...field}
+							labelId={name + "_label"}
+							error={!!errors[name]}
+						>
+							{data.map((option) => (
+								<MenuItem key={option} value={option}>
+									{option}
+								</MenuItem>
+							))}
+						</Select>
+						{errors[name]?.message && (
+							<FormHelperText error>
+								{errors[name]?.message as string}
+							</FormHelperText>
+						)}
+					</>
+				)}
+			/>
 		</FormControl>
 	);
 }
