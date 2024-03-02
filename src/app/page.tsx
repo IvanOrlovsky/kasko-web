@@ -3,7 +3,7 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import NavChip from "@/components/data-display/NavChip";
 
-import { useState } from "react";
+import Step1 from "./_steps/Step1";
 import { useMainContext } from "@/contexts/MainContext";
 
 export default function Home() {
@@ -32,6 +32,7 @@ export default function Home() {
 					active={step === 4}
 				/>
 			</div>
+			{step === 1 && <Step1 />}
 		</main>
 	);
 }
