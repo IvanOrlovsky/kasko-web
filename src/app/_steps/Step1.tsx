@@ -4,6 +4,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useMainContext } from "@/contexts/MainContext";
 import Auto from "./Step1Blocks/Auto";
+import DocTS from "./Step1Blocks/DocTS";
 
 type FormValues = {
 	isCarRegistered: boolean;
@@ -60,8 +61,9 @@ export default function Step1() {
 
 	return (
 		<FormProvider {...form}>
-			<form>
+			<form className="flex flex-col gap-4">
 				<Auto />
+				<DocTS />
 			</form>
 			<DevTool control={form.control} />
 		</FormProvider>
