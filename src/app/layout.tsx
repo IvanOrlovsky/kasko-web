@@ -9,7 +9,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="ru">
-			<body className="bg-[#F1F2F6]">
+			<body className="bg-[#F1F2F6] pb-20">
 				<Header />
 				<MainContextProvider>{children}</MainContextProvider>
 			</body>
