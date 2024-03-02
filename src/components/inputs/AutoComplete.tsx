@@ -49,8 +49,9 @@ export default function AutoComplete({
 					groupBy={(option) => option.label || "Остальные"}
 					popupIcon={false}
 					getOptionLabel={(option) => option.region}
-					renderInput={(params) => (
-						<TextField variant="filled" {...params} label={title} />
+					onChange={(e, value) => field.onChange(value)}
+					renderInput={({ ...params }) => (
+						<TextField {...params} variant="filled" label={title} />
 					)}
 					renderOption={(props, option, { inputValue }) => {
 						const matches = match(option.region, inputValue, {
