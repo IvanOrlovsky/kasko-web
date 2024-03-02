@@ -1,7 +1,7 @@
 "use client";
 
 import { TextField } from "@mui/material";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, Controller } from "react-hook-form";
 import { styled } from "@mui/material";
 
 const StyledSimpleInput = styled(TextField)({
@@ -34,34 +34,45 @@ export default function SimpleInput({
 	patternMsg,
 }: SimpleInputProps) {
 	const {
-		register,
+		control,
 		formState: { errors },
-		clearErrors,
 	} = useFormContext();
 
 	return (
-		<StyledSimpleInput
-			helperText={
-				errors[name]?.message
-					? (errors[name]?.message as string)
-					: helper
-			}
-			placeholder={placeholder}
-			fullWidth
-			label={label}
-			variant="filled"
-			{...register(name, {
-				onChange: () => clearErrors(name),
+		<Controller
+			control={control}
+			name={name}
+			render={({ field }) => (
+				<StyledSimpleInput
+					helperText={
+						errors[name]?.message
+							? String(errors[name]?.message)
+							: helper
+					}
+					placeholder={placeholder}
+					fullWidth
+					label={label}
+					variant="filled"
+					{...field}
+					error={!!errors[name]}
+				/>
+			)}
+			rules={{
 				required: required
-					? requiredMsg
-						? requiredMsg
-						: "Обязательное поле"
+					? {
+							value: true,
+							message: requiredMsg
+								? requiredMsg
+								: "Обязательное поле",
+					  }
 					: false,
 				pattern: pattern
-					? { value: pattern, message: patternMsg as string }
+					? {
+							value: pattern,
+							message: patternMsg || "Неверный формат",
+					  }
 					: undefined,
-			})}
-			error={!!errors[name]?.message}
-		></StyledSimpleInput>
+			}}
+		/>
 	);
 }
