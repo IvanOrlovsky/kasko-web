@@ -31,9 +31,18 @@ export default function Test() {
 				label="Авто ещё не застраховано"
 				hint="Некая дополнительная информация"
 			/>
-			<AutoComplete dataset={Regions} title="Регион использования ТС" />
-			<AutoComplete dataset={Regions} title="Регион использования ТС" />
+			<AutoComplete
+				name=""
+				dataset={Regions}
+				title="Регион использования ТС"
+			/>
+			<AutoComplete
+				name=""
+				dataset={Regions}
+				title="Регион использования ТС"
+			/>
 			<RangeInput
+				name=""
 				isDate={true}
 				title={"Срок кредитования"}
 				marks={[
@@ -52,6 +61,7 @@ export default function Test() {
 				]}
 			></RangeInput>
 			<RangeInput
+				name=""
 				title={"Текущая рыночная стоимость"}
 				isCurrency={true}
 				min={10000}
@@ -59,6 +69,7 @@ export default function Test() {
 				step={1000}
 			></RangeInput>
 			<RangeInput
+				name=""
 				title={"Набор числа"}
 				min={0}
 				max={3000000}
