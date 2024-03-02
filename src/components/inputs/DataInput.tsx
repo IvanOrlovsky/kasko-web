@@ -39,7 +39,7 @@ export default function DateInput() {
 					) : (
 						<span>Дата начала действия договора</span>
 					)}
-					<CalendarTodayOutlinedIcon className="mr-4 h-4 w-4" />
+					<CalendarTodayOutlinedIcon className="ml-auto h-4 w-4" />
 				</Button>
 			</PopoverTrigger>
 		</Popover>
