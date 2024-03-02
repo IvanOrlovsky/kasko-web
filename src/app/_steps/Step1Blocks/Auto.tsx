@@ -27,7 +27,7 @@ export default function Auto() {
 							}
 							required={!watch("isCarRegistered")}
 							requiredMsg="Если авто зарегистрировано, то необходимо ввести госномер."
-							patternMsg="Введенное значение не удволетворяет является госномером. Пример: А 000 АА 00"
+							patternMsg="Введенное значение не является госномером. Пример: А 000 АА 00"
 							helper="Введите госномер автомобиля чтобы мы нашли данные о нем"
 						/>
 						<button
@@ -72,7 +72,7 @@ export default function Auto() {
 							label="Текущая рыночная стоимость"
 							pattern={/^\d+$/}
 							patternMsg="Вы ввели не число!"
-							required={!watch("isCarRegistered")}
+							required={watch("isCarRegistered")}
 						/>
 						<section className="flex flex-col gap-3">
 							<h2 className="font-roboto font-normal text-base text-[#737B8C]">
