@@ -46,18 +46,44 @@ export default function AutoComplete({
 					sx={{ width: "100%" }}
 					options={dataset}
 					noOptionsText="Не найдено..."
-					groupBy={(option) => option.label || "Остальные"}
+					groupBy={(option) => {
+						if (
+							option &&
+							typeof option === "object" &&
+							"label" in option
+						) {
+							return String(option.label) || "Остальные";
+						}
+						return "Остальные";
+					}}
 					popupIcon={false}
-					getOptionLabel={(option) => option.region}
+					getOptionLabel={(option) =>
+						option &&
+						typeof option === "object" &&
+						"region" in option
+							? String(option.region)
+							: ""
+					}
 					onChange={(e, value) => field.onChange(value)}
 					renderInput={({ ...params }) => (
 						<TextField {...params} variant="filled" label={title} />
 					)}
 					renderOption={(props, option, { inputValue }) => {
-						const matches = match(option.region, inputValue, {
-							insideWords: true,
-						});
-						const parts = parse(option.region, matches);
+						let matches, parts;
+						if (
+							option &&
+							typeof option === "object" &&
+							"region" in option
+						) {
+							matches = match(
+								option.region as string,
+								inputValue,
+								{
+									insideWords: true,
+								}
+							);
+							parts = parse(option.region as string, matches);
+						}
 
 						return (
 							<li {...props}>
