@@ -43,7 +43,11 @@ export default function SimpleSelect({
 			<Controller
 				control={control}
 				name={name}
-				rules={{ required: required && requiredMsg }}
+				rules={{
+					required:
+						required &&
+						(requiredMsg ? requiredMsg : "Обязательное поле"),
+				}}
 				render={({ field }) => (
 					<>
 						<Select

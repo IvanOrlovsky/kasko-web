@@ -46,14 +46,12 @@ export default function Auto() {
 							name="made"
 							label="Марка"
 							required={watch("isCarRegistered")}
-							requiredMsg="Вы не ввели марку авто!"
 						></SimpleSelect>
 						<SimpleSelect
 							data={AutoData.map((auto) => auto.model)}
 							name="model"
 							label="Модель"
 							required={watch("isCarRegistered")}
-							requiredMsg="Вы не ввели модель авто!"
 						></SimpleSelect>
 						<SimpleSelect
 							data={AutoData.map((auto) =>
@@ -62,14 +60,12 @@ export default function Auto() {
 							name="releaseYear"
 							label="Год выпуска"
 							required={watch("isCarRegistered")}
-							requiredMsg="Вы не ввели год выпуска авто!"
 						></SimpleSelect>
 						<SimpleSelect
 							data={AutoData.map((auto) => auto.power)}
 							name="power"
 							label="Мощность"
 							required={watch("isCarRegistered")}
-							requiredMsg="Вы не ввели год мощность авто!"
 						></SimpleSelect>
 						<SimpleInput
 							name="todayCost"
@@ -77,7 +73,6 @@ export default function Auto() {
 							pattern={/^\d+$/}
 							patternMsg="Вы ввели не число!"
 							required={!watch("isCarRegistered")}
-							requiredMsg="Если авто зарегистрировано, то необходимо ввести госномер."
 						/>
 						<section className="flex flex-col gap-3">
 							<h2 className="font-roboto font-normal text-base text-[#737B8C]">

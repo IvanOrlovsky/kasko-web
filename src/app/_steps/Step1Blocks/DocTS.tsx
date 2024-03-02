@@ -27,7 +27,6 @@ export default function DocTS() {
 						name="TSdocument"
 						label="Документ ТС"
 						required={watch("isCarRegistered")}
-						requiredMsg="Вы не ввели документ ТС!"
 					></SimpleSelect>
 					<SimpleInput
 						name="todayCost"
@@ -35,13 +34,11 @@ export default function DocTS() {
 						pattern={/^\d+$/}
 						patternMsg="Вы ввели не число!"
 						required={!watch("isCarRegistered")}
-						requiredMsg="Необходимо ввести текущую рыночную стоимость."
 					/>
 					<SimpleInput
 						name="VIN"
 						label="VIN"
 						required={!watch("isCarRegistered")}
-						requiredMsg="Необходимо ввести VIN номер."
 					/>
 				</div>
 			</FormBlock>

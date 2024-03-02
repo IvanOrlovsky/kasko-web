@@ -52,7 +52,11 @@ export default function SimpleInput({
 			variant="filled"
 			{...register(name, {
 				onChange: () => clearErrors(name),
-				required: required ? requiredMsg : false,
+				required: required
+					? requiredMsg
+						? requiredMsg
+						: "Обязательное поле"
+					: false,
 				pattern: pattern
 					? { value: pattern, message: patternMsg as string }
 					: undefined,
