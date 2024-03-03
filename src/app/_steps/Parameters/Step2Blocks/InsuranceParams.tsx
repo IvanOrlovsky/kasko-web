@@ -1,10 +1,9 @@
 "use client";
 
 import FormBlock from "@/components/FormBlock";
-import RangeInput from "@/components/inputs/RangeInput";
+import { CurrencyRangeInput } from "@/components/inputs/RangeInputs";
 import AutoComplete from "@/components/inputs/AutoComplete";
 import Regions from "../../../../../public/datasets/Regions.json";
-import { useFormContext } from "react-hook-form";
 import TwoOptionsSwitch from "@/components/inputs/TwoOprionsSwitch";
 import DateInput from "@/components/inputs/DataInput";
 
@@ -32,10 +31,9 @@ export default function InsuranceParams() {
 					</span>
 				</div>
 				<div className="w-full flex flex-col items-center my-5">
-					<RangeInput
+					<CurrencyRangeInput
 						title="Франшиза"
 						name="franchaise"
-						isCurrency={true}
 						min={0}
 						max={30000}
 						step={5000}
