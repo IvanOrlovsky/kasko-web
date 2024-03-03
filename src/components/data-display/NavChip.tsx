@@ -1,17 +1,8 @@
 "use client";
 
+import { NavChipProps } from "@/types/components/data-display/NavChip";
 import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
-import { useState } from "react";
-
-type NavChipProps = {
-	letterInCircle: string;
-	label: string;
-	active: boolean;
-	onClick?: () => void;
-
-	disabled?: boolean;
-};
 
 export default function NavChip({
 	letterInCircle,

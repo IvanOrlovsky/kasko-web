@@ -1,12 +1,12 @@
 "use client";
 
 import Select from "@mui/material/Select";
-import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import { useFormContext, Controller } from "react-hook-form";
 import { styled } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
+import { SimpleSelectProps } from "@/types/components/inputs/SimpleSelect";
 
 const StyledSimpleSelect = styled(Select)({
 	"& .MuiSelect-filled": {
@@ -16,14 +16,6 @@ const StyledSimpleSelect = styled(Select)({
 		outline: "",
 	},
 });
-
-type SimpleSelectProps = {
-	label?: string;
-	name: string;
-	data: string[];
-	required?: boolean;
-	requiredMsg?: string;
-};
 
 export default function SimpleSelect({
 	label,

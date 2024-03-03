@@ -4,21 +4,10 @@ import { useForm, FormProvider } from "react-hook-form";
 import { useMainContext } from "@/contexts/MainContext";
 import InsuranceParams from "./Step2Blocks/InsuranceParams";
 import { DevTool } from "@hookform/devtools";
-
-type FormValues = {
-	region: {
-		label?: string;
-		region: string;
-		code: number;
-	};
-	repair: string;
-	franchaise: string;
-	insuranseDuration: string;
-	dateOfAgreementBegin: string;
-};
+import { ParametersFormValues } from "@/types/forms/ParametersForm";
 
 export default function Step2() {
-	const form = useForm<FormValues>({
+	const form = useForm<ParametersFormValues>({
 		defaultValues: {
 			region: {
 				label: "Популярные",
@@ -34,7 +23,8 @@ export default function Step2() {
 
 	const { setStep } = useMainContext();
 
-	const onSubmit = (data: FormValues) => setStep((prev) => prev + 1);
+	const onSubmit = (data: ParametersFormValues) =>
+		setStep((prev) => prev + 1);
 
 	return (
 		<FormProvider {...form}>

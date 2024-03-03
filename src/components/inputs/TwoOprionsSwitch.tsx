@@ -1,11 +1,6 @@
 import { useFormContext } from "react-hook-form";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
-type TwoOptionsSwitchProps = {
-	name: string;
-	option1: string;
-	option2: string;
-};
+import { TwoOptionsSwitchProps } from "@/types/components/inputs/TwoOptionsSwitch";
 
 export default function TwoOptionsSwitch({
 	name,

@@ -6,31 +6,10 @@ import { DevTool } from "@hookform/devtools";
 import Auto from "./Step1Blocks/Auto";
 import DocTS from "./Step1Blocks/DocTS";
 import Drivers from "./Step1Blocks/Drivers";
-
-type FormValues = {
-	isCarRegistered: boolean;
-	GOSnumber: string;
-	make: string;
-	model: string;
-	releaseYear: string;
-	power: string;
-	bodyType: string;
-	gearBoxType: string;
-	engine: string;
-	modification: string;
-	todayCost: string;
-	mileage: string;
-	minDriversAge: string;
-	minDriversExp: string;
-	hasActiveKasko: boolean;
-	isCarInCredit: boolean;
-	TSdocument: string;
-	PTSnumber: string;
-	VIN: string;
-};
+import { AutoFormValues } from "@/types/forms/AutoForm";
 
 export default function Step1() {
-	const form = useForm<FormValues>({
+	const form = useForm<AutoFormValues>({
 		defaultValues: {
 			isCarRegistered: false,
 			GOSnumber: "",
@@ -57,7 +36,7 @@ export default function Step1() {
 
 	const { setStep } = useMainContext();
 
-	const onSubmit = (data: FormValues) => setStep((prev) => prev + 1);
+	const onSubmit = (data: AutoFormValues) => setStep((prev) => prev + 1);
 
 	return (
 		<FormProvider {...form}>

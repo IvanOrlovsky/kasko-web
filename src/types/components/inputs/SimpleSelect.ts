@@ -1,0 +1,7 @@
+export type SimpleSelectProps = {
+	label?: string;
+	name: string;
+	data: string[];
+	required?: boolean;
+	requiredMsg?: string;
+};

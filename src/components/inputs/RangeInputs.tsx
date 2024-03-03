@@ -10,7 +10,7 @@ import {
 	DateRangeProps,
 	Mark,
 	RangeInputProps,
-} from "@/types/RangeInputs";
+} from "@/types/components/inputs/RangeInputs";
 
 const StyledSlider = styled(Slider)({
 	height: 2,

@@ -1,16 +1,8 @@
 "use client";
 
-import { useFormContext } from "react-hook-form";
 
-type SimpleInputProps = {
-	name: string;
-	required?: boolean;
-	requiredMsg?: string;
-	helper?: string;
-	placeholder?: string;
-	pattern?: RegExp;
-	patternMsg?: string;
-};
+import { SimpleInputProps } from "@/types/components/inputs/SimpleInput";
+import { useFormContext } from "react-hook-form";
 
 export default function SimpleInput({
 	name,

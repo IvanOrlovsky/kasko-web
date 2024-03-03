@@ -6,19 +6,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import InfoHint from "../interactive-icons/InfoHint";
 import { useFormContext } from "react-hook-form";
-
-type CheckBoxType = {
-	label: string;
-	name: string;
-	defaultChecked?: boolean;
-	required?: boolean;
-	disabled?: boolean;
-	onChange?: (
-		event: React.SyntheticEvent<Element, Event>,
-		checked: boolean
-	) => void;
-	hint?: string;
-};
+import { CheckBoxProps } from "@/types/components/inputs/CheckBox";
 
 export default function CheckBox({
 	label,
@@ -28,7 +16,7 @@ export default function CheckBox({
 	onChange,
 	hint,
 	name,
-}: CheckBoxType) {
+}: CheckBoxProps) {
 	const { register } = useFormContext();
 	return (
 		<FormGroup>

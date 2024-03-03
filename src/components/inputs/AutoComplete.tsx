@@ -6,6 +6,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import parse from "autosuggest-highlight/parse";
 import match from "autosuggest-highlight/match";
 import { styled } from "@mui/material/styles";
+import { AutoCompleteProps } from "@/types/components/inputs/AutoComplete";
 
 const StyledAutocomplete = styled(Autocomplete)({
 	"& .MuiAutocomplete-inputRoot": {
@@ -21,21 +22,13 @@ const StyledAutocomplete = styled(Autocomplete)({
 	},
 });
 
-type AutoCompleteType = {
-	name: string;
-	title: string;
-	dataset: unknown[];
-	required?: boolean;
-	requiredMsg?: string;
-};
-
 export default function AutoComplete({
 	dataset,
 	title,
 	name,
 	required,
 	requiredMsg,
-}: AutoCompleteType) {
+}: AutoCompleteProps) {
 	const {
 		control,
 		formState: { errors },

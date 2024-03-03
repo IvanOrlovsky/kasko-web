@@ -1,21 +1,6 @@
 "use client";
+import { FormBlockProps } from "@/types/components/FormBlock";
 import { useFormContext } from "react-hook-form";
-
-type SubmitFormBlockProps = {
-	title: string;
-	hasSubmitBtn: boolean;
-	submitBtnLabel: string;
-	forForm: string;
-	children: React.ReactNode;
-};
-
-type FormBlockProps = {
-	title: string;
-	hasSubmitBtn?: undefined;
-	submitBtnLabel?: undefined;
-	forForm?: undefined;
-	children: React.ReactNode;
-};
 
 export default function FormBlock({
 	title,
@@ -23,7 +8,7 @@ export default function FormBlock({
 	submitBtnLabel,
 	forForm,
 	children,
-}: SubmitFormBlockProps | FormBlockProps) {
+}: FormBlockProps) {
 	const { trigger } = useFormContext();
 	return (
 		<section className="flex flex-col gap-3 rounded-3xl bg-white pt-5 px-4 pb-5">
