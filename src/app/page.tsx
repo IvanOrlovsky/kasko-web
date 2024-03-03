@@ -2,12 +2,9 @@
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import NavChip from "@/components/data-display/NavChip";
-
-import { useEffect } from "react";
-import Step1 from "./_steps/Step1";
-
+import Step1 from "./_steps/Auto/Step1";
 import { useMainContext } from "@/contexts/MainContext";
-import Step2 from "./_steps/Step2";
+import Step2 from "./_steps/Parameters/Step2";
 import Footer from "@/components/Footer";
 
 export default function Home() {
