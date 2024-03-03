@@ -46,7 +46,7 @@ export default function InsuranceParams() {
 							{ value: 15000 },
 							{ value: 20000 },
 							{ value: 25000 },
-							{ value: 30000 },
+							{ value: 30000, label: "30000 ₽" },
 						]}
 					/>
 				</div>
