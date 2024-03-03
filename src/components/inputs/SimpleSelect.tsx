@@ -1,19 +1,19 @@
 "use client";
 
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import { useFormContext, Controller } from "react-hook-form";
 import { styled } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
-import { useState } from "react";
 import MenuItem from "@mui/material/MenuItem";
 
 const StyledSimpleSelect = styled(Select)({
-	"& .MuiTextField-root": {
+	"& .MuiSelect-filled": {
 		backgroundColor: "#F1F2F6",
 		borderRadius: "4px",
 		border: "2px solid #A2ADC1",
+		outline: "",
 	},
 });
 
@@ -51,22 +51,36 @@ export default function SimpleSelect({
 				}}
 				render={({ field }) => (
 					<>
-						<Select
+						<StyledSimpleSelect
 							{...field}
 							labelId={name + "_label"}
 							error={!!errors[name]}
+							disableUnderline
+							sx={{
+								"& .Mui-error": {
+									backgroundColor: "#FEE7EA",
+									borderRadius: "4px",
+									border: "2px solid #F3566A",
+								},
+							}}
 						>
 							{data.map((option) => (
 								<MenuItem key={option} value={option}>
 									{option}
 								</MenuItem>
 							))}
-						</Select>
-						{errors[name]?.message && (
-							<FormHelperText error>
-								{errors[name]?.message as string}
-							</FormHelperText>
-						)}
+						</StyledSimpleSelect>
+						<label
+							className={
+								errors[name]?.message
+									? "font-roboto font-normal text-sm text-[#F3566A]"
+									: "font-roboto font-normal text-sm text-[#737B8C]"
+							}
+						>
+							{errors[name]?.message
+								? String(errors[name]?.message)
+								: ""}
+						</label>
 					</>
 				)}
 			/>
