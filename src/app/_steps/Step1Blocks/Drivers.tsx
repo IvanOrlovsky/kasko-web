@@ -18,11 +18,15 @@ export default function Drivers() {
 						name="minDriversAge"
 						placeholder="Минимальный возраст водителей"
 						required={watch("isCarRegistered")}
+						pattern={/^\d+$/}
+						patternMsg="Вы ввели не число!"
 					/>
 					<SimpleInput
 						name="minDriversExp"
 						placeholder="Минимальный стаж водителей"
 						required={watch("isCarRegistered")}
+						pattern={/^\d+$/}
+						patternMsg="Вы ввели не число!"
 					/>
 				</div>
 			</FormBlock>
