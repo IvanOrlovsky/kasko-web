@@ -53,7 +53,6 @@ export default function Step1() {
 			VIN: "",
 		},
 		shouldUnregister: true,
-		mode: "onBlur",
 	});
 
 	const { setStep } = useMainContext();
@@ -66,7 +65,6 @@ export default function Step1() {
 				onSubmit={form.handleSubmit(onSubmit)}
 				id="auto_form"
 				className="flex flex-col gap-4"
-				// noValidate
 			>
 				<Auto />
 				<DocTS />
