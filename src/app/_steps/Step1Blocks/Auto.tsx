@@ -45,13 +45,13 @@ export default function Auto() {
 							data={AutoData.map((auto) => auto.make)}
 							name="made"
 							label="Марка"
-							required={watch("isCarRegistered")}
+							required={true}
 						></SimpleSelect>
 						<SimpleSelect
 							data={AutoData.map((auto) => auto.model)}
 							name="model"
 							label="Модель"
-							required={watch("isCarRegistered")}
+							required={true}
 						></SimpleSelect>
 						<SimpleSelect
 							data={AutoData.map((auto) =>
@@ -59,21 +59,22 @@ export default function Auto() {
 							)}
 							name="releaseYear"
 							label="Год выпуска"
-							required={watch("isCarRegistered")}
+							required={true}
 						></SimpleSelect>
 						<SimpleSelect
 							data={AutoData.map((auto) => auto.power)}
 							name="power"
 							label="Мощность"
-							required={watch("isCarRegistered")}
+							required={true}
 						></SimpleSelect>
 						<SimpleInput
 							name="todayCost"
-							label="Текущая рыночная стоимость"
+							placeholder="Текущая рыночная стоимость"
 							pattern={/^\d+$/}
 							patternMsg="Вы ввели не число!"
-							required={watch("isCarRegistered")}
+							required={true}
 						/>
+
 						<section className="flex flex-col gap-3">
 							<h2 className="font-roboto font-normal text-base text-[#737B8C]">
 								Не обязательно для заполнения, но поможет лучше
@@ -106,7 +107,7 @@ export default function Auto() {
 							<div className="mt-4">
 								<SimpleInput
 									name="mileage"
-									label="Приблизительный пробег, км"
+									placeholder="Приблизительный пробег, км"
 									pattern={/^\d+$/}
 									patternMsg="Вы ввели не число!"
 									required={false}
