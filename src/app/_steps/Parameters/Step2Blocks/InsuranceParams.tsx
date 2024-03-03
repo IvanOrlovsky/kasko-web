@@ -9,12 +9,18 @@ import DateInput from "@/components/inputs/DataInput";
 
 export default function InsuranceParams() {
 	return (
-		<FormBlock title="Параметры страховки">
+		<FormBlock
+			title="Параметры страховки"
+			forForm="parameters_form"
+			hasSubmitBtn={true}
+			submitBtnLabel="Продолжить"
+		>
 			<>
 				<AutoComplete
 					name="region"
 					title="Регион использования ТС"
 					dataset={Regions}
+					required={true}
 				/>
 
 				<div className="w-full flex flex-col items-center my-5">
