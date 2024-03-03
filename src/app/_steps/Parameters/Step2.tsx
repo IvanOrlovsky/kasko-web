@@ -3,6 +3,7 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { useMainContext } from "@/contexts/MainContext";
 import InsuranceParams from "./Step2Blocks/InsuranceParams";
+import { DevTool } from "@hookform/devtools";
 
 type FormValues = {
 	region: string;
@@ -28,6 +29,7 @@ export default function Step2() {
 			>
 				<InsuranceParams />
 			</form>
+			<DevTool control={form.control} />
 		</FormProvider>
 	);
 }
