@@ -4,7 +4,7 @@ import SimpleSelect from "@/components/inputs/SimpleSelect";
 import CheckBox from "@/components/inputs/CheckBox";
 import { useFormContext } from "react-hook-form";
 
-import AutoData from "../../../../public/datasets/AutoData.json";
+import AutoData from "../../../../../public/datasets/AutoData.json";
 
 export default function Auto() {
 	const { watch, trigger } = useFormContext();

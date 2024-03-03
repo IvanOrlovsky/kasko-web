@@ -3,7 +3,7 @@
 import FormBlock from "@/components/FormBlock";
 import RangeInput from "@/components/inputs/RangeInput";
 import AutoComplete from "@/components/inputs/AutoComplete";
-import Regions from "../../../../public/datasets/Regions.json";
+import Regions from "../../../../../public/datasets/Regions.json";
 import { useFormContext } from "react-hook-form";
 import TwoOptionsSwitch from "@/components/inputs/TwoOprionsSwitch";
 import DateInput from "@/components/inputs/DataInput";
