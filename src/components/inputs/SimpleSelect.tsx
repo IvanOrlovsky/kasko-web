@@ -44,6 +44,7 @@ export default function SimpleSelect({
 				control={control}
 				name={name}
 				rules={{
+					shouldUnregister: true,
 					required:
 						required &&
 						(requiredMsg ? requiredMsg : "Обязательное поле"),
