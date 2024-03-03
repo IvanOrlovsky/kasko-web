@@ -30,14 +30,14 @@ export default function DocTS() {
 					></SimpleSelect>
 					<SimpleInput
 						name="todayCost"
-						label="Текущая рыночная стоимость"
+						placeholder="Текущая рыночная стоимость"
 						pattern={/^\d+$/}
 						patternMsg="Вы ввели не число!"
 						required={!watch("isCarRegistered")}
 					/>
 					<SimpleInput
 						name="VIN"
-						label="VIN"
+						placeholder="VIN"
 						required={!watch("isCarRegistered")}
 					/>
 				</div>
