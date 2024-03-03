@@ -24,16 +24,18 @@ export default function SimpleInput({
 	patternMsg,
 }: SimpleInputProps) {
 	const {
-		register,
+		control,
 		formState: { errors },
 		clearErrors,
 	} = useFormContext();
 
 	return (
 		<div className="relative">
-			<input
-				{...register(name, {
-					onChange: () => clearErrors(name),
+			<Controller
+				control={control}
+				name={name}
+				rules={{
+					shouldUnregister: true,
 					required: required
 						? {
 								value: true,
@@ -48,15 +50,20 @@ export default function SimpleInput({
 								message: patternMsg || "Неверный формат",
 						  }
 						: undefined,
-				})}
-				type="text"
-				id={name}
-				className={
-					errors[name]
-						? "block rounded-[4px] px-4 pb-[15px] pt-5 w-full font-roboto font-normal text-base text-gray-900 bg-[#FEE7EA]  border-2 border-[#F3566A] appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-						: "block rounded-[4px] px-4 pb-[15px] pt-5 w-full font-roboto font-normal text-base text-gray-900 bg-[#F1F2F6]  border-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-				}
-				placeholder=" "
+				}}
+				render={(fields) => (
+					<input
+						{...fields}
+						type="text"
+						id={name}
+						className={
+							errors[name]
+								? "block rounded-[4px] px-4 pb-[15px] pt-5 w-full font-roboto font-normal text-base text-gray-900 bg-[#FEE7EA]  border-2 border-[#F3566A] appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+								: "block rounded-[4px] px-4 pb-[15px] pt-5 w-full font-roboto font-normal text-base text-gray-900 bg-[#F1F2F6]  border-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+						}
+						placeholder=" "
+					/>
+				)}
 			/>
 			<label
 				htmlFor={name}
