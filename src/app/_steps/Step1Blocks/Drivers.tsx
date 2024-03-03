@@ -17,12 +17,12 @@ export default function Drivers() {
 					<SimpleInput
 						name="minDriversAge"
 						placeholder="Минимальный возраст водителей"
-						required={!watch("isCarRegistered")}
+						required={watch("isCarRegistered")}
 					/>
 					<SimpleInput
 						name="minDriversExp"
 						placeholder="Минимальный стаж водителей"
-						required={!watch("isCarRegistered")}
+						required={watch("isCarRegistered")}
 					/>
 				</div>
 			</FormBlock>

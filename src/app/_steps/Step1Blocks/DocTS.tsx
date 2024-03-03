@@ -33,12 +33,12 @@ export default function DocTS() {
 						placeholder="Текущая рыночная стоимость"
 						pattern={/^\d+$/}
 						patternMsg="Вы ввели не число!"
-						required={!watch("isCarRegistered")}
+						required={watch("isCarRegistered")}
 					/>
 					<SimpleInput
 						name="VIN"
 						placeholder="VIN"
-						required={!watch("isCarRegistered")}
+						required={watch("isCarRegistered")}
 					/>
 				</div>
 			</FormBlock>
