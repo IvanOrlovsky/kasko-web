@@ -14,7 +14,7 @@ export default function MainContextProvider({
 }: {
 	children: React.ReactNode;
 }) {
-	const [step, setStep] = useState(1);
+	const [step, setStep] = useState(2);
 
 	return (
 		<MainContext.Provider value={{ step, setStep }}>
