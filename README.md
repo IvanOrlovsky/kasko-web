@@ -3,7 +3,7 @@
 ## Технологии
 
 -   Язык TypeScript
--   JS Фреймворк Next.js
+-   JS/React Фреймворк Next.js
 -   CSS Фреймворк TailWind
 
 ## Библиотеки
