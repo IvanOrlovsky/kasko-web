@@ -29,8 +29,8 @@ export default function DocTS() {
 						required={watch("isCarRegistered")}
 					></SimpleSelect>
 					<SimpleInput
-						name="todayCost"
-						placeholder="Текущая рыночная стоимость"
+						name="PTSnumber"
+						placeholder={`Номер ` + watch("TSdocument")}
 						pattern={/^\d+$/}
 						patternMsg="Вы ввели не число!"
 						required={watch("isCarRegistered")}
