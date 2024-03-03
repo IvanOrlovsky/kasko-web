@@ -16,12 +16,12 @@ export default function Drivers() {
 				<div className="flex flex-col gap-4">
 					<SimpleInput
 						name="minDriversAge"
-						label="Минимальный возраст водителей"
+						placeholder="Минимальный возраст водителей"
 						required={!watch("isCarRegistered")}
 					/>
 					<SimpleInput
 						name="minDriversExp"
-						label="Минимальный стаж водителей"
+						placeholder="Минимальный стаж водителей"
 						required={!watch("isCarRegistered")}
 					/>
 				</div>
