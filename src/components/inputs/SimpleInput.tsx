@@ -1,9 +1,8 @@
 "use client";
 
-import { useFormContext, Controller } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 type SimpleInputProps = {
-	label?: string;
 	name: string;
 	required?: boolean;
 	requiredMsg?: string;
@@ -14,7 +13,6 @@ type SimpleInputProps = {
 };
 
 export default function SimpleInput({
-	label,
 	name,
 	required,
 	helper,
@@ -35,7 +33,6 @@ export default function SimpleInput({
 				type="text"
 				{...register(name, {
 					onChange: () => {
-						console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&");
 						clearErrors(name);
 					},
 					shouldUnregister: true,
