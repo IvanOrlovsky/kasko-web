@@ -2,6 +2,7 @@
 
 import { useForm, FormProvider } from "react-hook-form";
 import { useMainContext } from "@/contexts/MainContext";
+import { DevTool } from "@hookform/devtools";
 import Auto from "./Step1Blocks/Auto";
 import DocTS from "./Step1Blocks/DocTS";
 import Drivers from "./Step1Blocks/Drivers";
