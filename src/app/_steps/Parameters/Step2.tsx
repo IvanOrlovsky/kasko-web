@@ -6,7 +6,11 @@ import InsuranceParams from "./Step2Blocks/InsuranceParams";
 import { DevTool } from "@hookform/devtools";
 
 type FormValues = {
-	region: string;
+	region: {
+		label?: string;
+		region: string;
+		code: number;
+	};
 	repair: string;
 	franchaise: string;
 	insuranseDuration: string;
@@ -16,9 +20,13 @@ type FormValues = {
 export default function Step2() {
 	const form = useForm<FormValues>({
 		defaultValues: {
-			region: "",
+			region: {
+				label: "Популярные",
+				region: "Москва и Московская обл.",
+				code: 1,
+			},
 			repair: "Дилерская СТОА",
-			franchaise: "",
+			franchaise: "0",
 			insuranseDuration: "",
 			dateOfAgreementBegin: "",
 		},

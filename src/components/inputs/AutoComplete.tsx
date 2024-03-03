@@ -8,7 +8,6 @@ import match from "autosuggest-highlight/match";
 import { styled } from "@mui/material/styles";
 
 const StyledAutocomplete = styled(Autocomplete)({
-	height: "3em",
 	"& .MuiAutocomplete-inputRoot": {
 		backgroundColor: "#F1F2F6",
 		borderRadius: "4px",
@@ -26,20 +25,31 @@ type AutoCompleteType = {
 	name: string;
 	title: string;
 	dataset: unknown[];
+	required?: boolean;
+	requiredMsg?: string;
 };
 
 export default function AutoComplete({
 	dataset,
 	title,
 	name,
+	required,
+	requiredMsg,
 }: AutoCompleteType) {
-	const { control } = useFormContext();
+	const {
+		control,
+		formState: { errors },
+	} = useFormContext();
 
 	return (
 		<Controller
 			name={name}
 			control={control}
-			defaultValue={null}
+			rules={{
+				required:
+					required &&
+					(requiredMsg ? requiredMsg : "Обязательное поле"),
+			}}
 			render={({ field }) => (
 				<StyledAutocomplete
 					{...field}
