@@ -14,7 +14,15 @@ type FormValues = {
 };
 
 export default function Step2() {
-	const form = useForm<FormValues>();
+	const form = useForm<FormValues>({
+		defaultValues: {
+			region: "",
+			repair: "Дилерская СТОА",
+			franchaise: "",
+			insuranseDuration: "",
+			dateOfAgreementBegin: "",
+		},
+	});
 
 	const { setStep } = useMainContext();
 
