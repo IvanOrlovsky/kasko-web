@@ -6,7 +6,7 @@ import { DevTool } from "@hookform/devtools";
 import Auto from "./Step1Blocks/Auto";
 import DocTS from "./Step1Blocks/DocTS";
 import Drivers from "./Step1Blocks/Drivers";
-import { AutoFormValues } from "@/types/forms/AutoForm"; 
+import { AutoFormValues } from "@/types/forms/AutoForm";
 
 export default function Step1() {
 	const { setStep, autoData, setAutoData } = useMainContext();
