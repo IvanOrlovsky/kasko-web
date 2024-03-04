@@ -12,7 +12,7 @@ export default function MainContextProvider({
 }: {
 	children: React.ReactNode;
 }) {
-	const [step, setStep] = useState(2);
+	const [step, setStep] = useState(1);
 	const [autoData, setAutoData] = useState<AutoFormValues>({
 		isCarRegistered: false,
 		GOSnumber: "",
