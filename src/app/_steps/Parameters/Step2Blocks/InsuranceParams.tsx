@@ -55,7 +55,10 @@ export default function InsuranceParams() {
 					/>
 				</div>
 				<div className="w-full flex flex-col items-center my-5">
-					<DateInput />
+					<DateInput
+						name="dateOfAgreementBegin"
+						label="Дата начала действия договора"
+					/>
 				</div>
 			</>
 		</FormBlock>
