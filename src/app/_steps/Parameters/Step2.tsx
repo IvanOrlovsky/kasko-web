@@ -35,7 +35,6 @@ export default function Step2() {
 			>
 				<InsuranceParams />
 			</form>
-			<DevTool control={form.control} />
 		</FormProvider>
 	);
 }

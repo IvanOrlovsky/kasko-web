@@ -49,7 +49,6 @@ export default function Step1() {
 				<DocTS />
 				<Drivers />
 			</form>
-			<DevTool control={form.control} />
 		</FormProvider>
 	);
 }
