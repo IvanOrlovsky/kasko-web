@@ -17,7 +17,7 @@ export default function Step2() {
 			repair: "Дилерская СТОА",
 			franchaise: "0",
 			insuranseDuration: "",
-			dateOfAgreementBegin: "",
+			dateOfAgreementBegin: new Date().toLocaleString(),
 		},
 	});
 
