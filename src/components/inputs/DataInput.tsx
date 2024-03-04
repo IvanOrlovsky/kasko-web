@@ -1,47 +1,62 @@
 "use client";
 
-import * as React from "react";
-import { format } from "date-fns";
+import "dayjs/locale/ru";
+import dayjs from "dayjs";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+import { ruRU } from "@mui/x-date-pickers";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+import { useFormContext } from "react-hook-form";
+import { useState } from "react";
+export default function DateInput({
+	name,
+	label,
+}: {
+	name: string;
+	label: string;
+}) {
+	const { register, setValue } = useFormContext();
+	const [isOpen, setIsOpen] = useState(false);
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import {
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from "@/components/ui/popover";
+	const currentDate = new Date();
 
-export default function DateInput() {
-	const [date, setDate] = React.useState<Date>();
+	const year = currentDate.getFullYear();
+	const month = (currentDate.getMonth() + 1).toString().padStart(2, "0");
+	const day = currentDate.getDate().toString().padStart(2, "0");
 
+	const formattedDate = `${year}-${month}-${day}`;
 	return (
-		<Popover>
-			<PopoverContent className="w-auto p-0">
-				<Calendar
-					mode="single"
-					selected={date}
-					onSelect={setDate}
-					initialFocus
-				/>
-			</PopoverContent>
-			<PopoverTrigger asChild>
-				<Button
-					variant={"outline"}
-					className={cn(
-						"w-[280px] justify-start text-left font-normal",
-						!date && "text-muted-foreground"
-					)}
-				>
-					{date ? (
-						format(date, "PPP")
-					) : (
-						<span>Дата начала действия договора</span>
-					)}
-					<CalendarTodayOutlinedIcon className="ml-auto h-4 w-4" />
-				</Button>
-			</PopoverTrigger>
-		</Popover>
+		<LocalizationProvider
+			dateAdapter={AdapterDayjs}
+			localeText={
+				ruRU.components.MuiLocalizationProvider.defaultProps.localeText
+			}
+			adapterLocale="ru"
+		>
+			<input type="hidden" {...register(name)} />
+			<DesktopDatePicker
+				open={isOpen}
+				onClose={() => setIsOpen(false)}
+				className="bg-[#F1F2F6] rounded"
+				label={label}
+				defaultValue={dayjs(formattedDate)}
+				onChange={(value) =>
+					setValue(name, value?.toDate().toLocaleString())
+				}
+				slots={{
+					openPickerButton: () => {
+						return (
+							<div
+								onClick={() => setIsOpen(true)}
+								className="hover:cursor-pointer"
+							>
+								<CalendarTodayOutlinedIcon />
+							</div>
+						);
+					},
+				}}
+			/>
+		</LocalizationProvider>
 	);
 }
