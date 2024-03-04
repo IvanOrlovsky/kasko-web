@@ -7,24 +7,16 @@ import { DevTool } from "@hookform/devtools";
 import { ParametersFormValues } from "@/types/forms/ParametersForm";
 
 export default function Step2() {
+	const { setStep, paramsData, setParamsData } = useMainContext();
+
 	const form = useForm<ParametersFormValues>({
-		defaultValues: {
-			region: {
-				label: "Популярные",
-				region: "Москва и Московская обл.",
-				code: 1,
-			},
-			repair: "Дилерская СТОА",
-			franchaise: "0",
-			insuranseDuration: "",
-			dateOfAgreementBegin: new Date().toLocaleString(),
-		},
+		defaultValues: { ...paramsData },
 	});
 
-	const { setStep } = useMainContext();
-
-	const onSubmit = (data: ParametersFormValues) =>
+	const onSubmit = (data: ParametersFormValues) => {
 		setStep((prev) => prev + 1);
+		setParamsData(data);
+	};
 
 	return (
 		<FormProvider {...form}>
@@ -35,6 +27,7 @@ export default function Step2() {
 			>
 				<InsuranceParams />
 			</form>
+			{/* <DevTool control={form.control} /> */}
 		</FormProvider>
 	);
 }

@@ -1,11 +1,9 @@
 "use client";
 
+import { MainContextType } from "@/types/contexts/MainContext";
+import { AutoFormValues } from "@/types/forms/AutoForm";
+import { ParametersFormValues } from "@/types/forms/ParametersForm";
 import React, { createContext, useState, useContext } from "react";
-
-type MainContextType = {
-	step: number;
-	setStep: React.Dispatch<React.SetStateAction<number>>;
-};
 
 const MainContext = createContext<MainContextType | null>(null);
 
@@ -14,10 +12,51 @@ export default function MainContextProvider({
 }: {
 	children: React.ReactNode;
 }) {
-	const [step, setStep] = useState(1);
+	const [step, setStep] = useState(2);
+	const [autoData, setAutoData] = useState<AutoFormValues>({
+		isCarRegistered: false,
+		GOSnumber: "",
+		make: "",
+		model: "",
+		releaseYear: "",
+		power: "",
+		bodyType: "",
+		gearBoxType: "",
+		engine: "",
+		modification: "",
+		todayCost: "",
+		mileage: "",
+		minDriversAge: "",
+		minDriversExp: "",
+		hasActiveKasko: false,
+		isCarInCredit: false,
+		TSdocument: "",
+		PTSnumber: "",
+		VIN: "",
+	});
+	const [paramsData, setParamsData] = useState<ParametersFormValues>({
+		region: {
+			label: "Популярные",
+			region: "Москва и Московская обл.",
+			code: 1,
+		},
+		repair: "Дилерская СТОА",
+		franchaise: "0",
+		insuranseDuration: "",
+		dateOfAgreementBegin: new Date().toDateString(),
+	});
 
 	return (
-		<MainContext.Provider value={{ step, setStep }}>
+		<MainContext.Provider
+			value={{
+				step,
+				setStep,
+				autoData,
+				setAutoData,
+				paramsData,
+				setParamsData,
+			}}
+		>
 			{children}
 		</MainContext.Provider>
 	);

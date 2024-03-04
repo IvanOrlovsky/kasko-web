@@ -6,37 +6,20 @@ import { DevTool } from "@hookform/devtools";
 import Auto from "./Step1Blocks/Auto";
 import DocTS from "./Step1Blocks/DocTS";
 import Drivers from "./Step1Blocks/Drivers";
-import { AutoFormValues } from "@/types/forms/AutoForm";
+import { AutoFormValues } from "@/types/forms/AutoForm"; 
 
 export default function Step1() {
+	const { setStep, autoData, setAutoData } = useMainContext();
+
 	const form = useForm<AutoFormValues>({
-		defaultValues: {
-			isCarRegistered: false,
-			GOSnumber: "",
-			make: "",
-			model: "",
-			releaseYear: "",
-			power: "",
-			bodyType: "",
-			gearBoxType: "",
-			engine: "",
-			modification: "",
-			todayCost: "",
-			mileage: "",
-			minDriversAge: "",
-			minDriversExp: "",
-			hasActiveKasko: false,
-			isCarInCredit: false,
-			TSdocument: "",
-			PTSnumber: "",
-			VIN: "",
-		},
+		defaultValues: { ...autoData },
 		shouldUnregister: true,
 	});
 
-	const { setStep } = useMainContext();
-
-	const onSubmit = (data: AutoFormValues) => setStep((prev) => prev + 1);
+	const onSubmit = (data: AutoFormValues) => {
+		setStep((prev) => prev + 1);
+		setAutoData(data);
+	};
 
 	return (
 		<FormProvider {...form}>
@@ -49,6 +32,7 @@ export default function Step1() {
 				<DocTS />
 				<Drivers />
 			</form>
+			{/* <DevTool control={form.control} /> */}
 		</FormProvider>
 	);
 }
