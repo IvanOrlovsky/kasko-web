@@ -5,6 +5,7 @@ import CheckBox from "@/components/inputs/CheckBoxes";
 import { useFormContext } from "react-hook-form";
 
 import AutoData from "../../../../../public/datasets/AutoData.json";
+import MaskInput from "@/components/inputs/Maskinput";
 
 export default function Auto() {
 	const { watch, trigger } = useFormContext();
@@ -19,15 +20,12 @@ export default function Auto() {
 				/>
 				{!watch("isCarRegistered") && (
 					<>
-						<SimpleInput
+						<MaskInput
 							name="GOSnumber"
 							placeholder="A 000 AA 00"
-							pattern={
-								/^[АВЕКМНОРСТУХ]\s?\d{3}\s?[АВЕКМНОРСТУХ]{2}\s?\d{2,3}$/iu
-							}
+							mask="a 999 aa 99"
 							required={!watch("isCarRegistered")}
 							requiredMsg="Если авто зарегистрировано, то необходимо ввести госномер."
-							patternMsg="Введенное значение не является госномером. Пример: А 000 АА 00"
 							helper="Введите госномер автомобиля чтобы мы нашли данные о нем"
 						/>
 						<button
