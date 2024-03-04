@@ -23,7 +23,7 @@ export default function CheckBox({
 			<Grid container alignItems="center">
 				<Grid item>
 					<FormControlLabel
-						className="font-roboto text-[#1F232B] text-base font-normal"
+						className=""
 						disabled={disabled}
 						required={required}
 						control={

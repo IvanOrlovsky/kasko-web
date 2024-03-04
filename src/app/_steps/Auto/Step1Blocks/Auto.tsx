@@ -30,7 +30,7 @@ export default function Auto() {
 						/>
 						<button
 							type="button"
-							className="bg-[#1698D9] hover:bg-[#0e81bb] active:bg-[#0a5880] rounded-2xl mb-5 py-[15px] font-roboto text-white font-semibold text-lg"
+							className="bg-kasko-blue"
 							onClick={() => trigger("GOSnumber")}
 						>
 							Найти
@@ -74,7 +74,7 @@ export default function Auto() {
 						/>
 
 						<section className="flex flex-col gap-3">
-							<h2 className="font-roboto font-normal text-base text-[#737B8C]">
+							<h2 className="kasko-subtext">
 								Не обязательно для заполнения, но поможет лучше
 								уточнить стоимость вашего автомобиля
 							</h2>

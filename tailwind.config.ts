@@ -35,6 +35,11 @@ const config = {
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
 			},
+			colors: {
+				"kasko-bg": "#F1F2F6",
+				"kasko-blue": "#1698D9",
+				"kasko-blue-light": "#C5EAFC",
+			},
 		},
 	},
 	plugins: [require("tailwindcss-animate")],

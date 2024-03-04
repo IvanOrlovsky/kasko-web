@@ -65,8 +65,8 @@ export default function SimpleSelect({
 						<label
 							className={
 								errors[name]?.message
-									? "font-roboto font-normal text-sm text-[#F3566A]"
-									: "font-roboto font-normal text-sm text-[#737B8C]"
+									? "kasko-subtext-error"
+									: "kasko-subtext"
 							}
 						>
 							{errors[name]?.message
