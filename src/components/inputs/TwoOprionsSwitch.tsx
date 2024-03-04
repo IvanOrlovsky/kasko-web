@@ -7,12 +7,12 @@ export default function TwoOptionsSwitch({
 	option1,
 	option2,
 }: TwoOptionsSwitchProps) {
-	const { register, setValue } = useFormContext();
+	const { register, setValue, watch } = useFormContext();
 
 	return (
 		<>
 			<input type="hidden" {...register(name)} />
-			<Tabs defaultValue={option1}>
+			<Tabs defaultValue={watch(name)}>
 				<TabsList>
 					<TabsTrigger
 						onClick={() => setValue(name, option1)}

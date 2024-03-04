@@ -16,16 +16,9 @@ export default function DateInput({
 	name: string;
 	label: string;
 }) {
-	const { register, setValue } = useFormContext();
+	const { register, setValue, watch } = useFormContext();
 	const [isOpen, setIsOpen] = useState(false);
 
-	const currentDate = new Date();
-
-	const year = currentDate.getFullYear();
-	const month = (currentDate.getMonth() + 1).toString().padStart(2, "0");
-	const day = currentDate.getDate().toString().padStart(2, "0");
-
-	const formattedDate = `${year}-${month}-${day}`;
 	return (
 		<LocalizationProvider
 			dateAdapter={AdapterDayjs}
@@ -40,10 +33,10 @@ export default function DateInput({
 				onClose={() => setIsOpen(false)}
 				className="bg-[#F1F2F6] rounded"
 				label={label}
-				defaultValue={dayjs(formattedDate)}
-				onChange={(value) =>
-					setValue(name, value?.toDate().toLocaleString())
-				}
+				defaultValue={dayjs(new Date(watch(name)))}
+				onChange={(value) => {
+					setValue(name, value?.toDate().toDateString());
+				}}
 				slots={{
 					openPickerButton: () => {
 						return (
