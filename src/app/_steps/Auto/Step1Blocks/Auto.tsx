@@ -1,7 +1,7 @@
 import FormBlock from "@/components/FormBlock";
 import SimpleInput from "@/components/inputs/SimpleInput";
 import SimpleSelect from "@/components/inputs/SimpleSelect";
-import CheckBox from "@/components/inputs/CheckBox";
+import CheckBox from "@/components/inputs/CheckBoxes";
 import { useFormContext } from "react-hook-form";
 
 import AutoData from "../../../../../public/datasets/AutoData.json";

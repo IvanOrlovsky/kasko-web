@@ -6,7 +6,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import InfoHint from "../interactive-icons/InfoHint";
 import { useFormContext } from "react-hook-form";
-import { CheckBoxProps } from "@/types/components/inputs/CheckBox";
+import { CheckBoxProps } from "@/types/components/inputs/CheckBoxes";
 
 export default function CheckBox({
 	label,
