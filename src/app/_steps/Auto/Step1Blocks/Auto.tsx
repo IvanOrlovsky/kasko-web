@@ -3,12 +3,16 @@ import SimpleInput from "@/components/inputs/SimpleInput";
 import SimpleSelect from "@/components/inputs/SimpleSelect";
 import CheckBox from "@/components/inputs/CheckBoxes";
 import { useFormContext } from "react-hook-form";
+import { useMainContext } from "@/contexts/MainContext";
 
 import AutoData from "../../../../../public/datasets/AutoData.json";
 import RegisteredAuto from "../../../../../public/datasets/RegisteredAuto.json";
+import { hasEmptyFields } from "@/lib/utils";
+import AutoSub from "./AutoSub";
 
 export default function Auto() {
-	const { watch, setError } = useFormContext();
+	const { watch, setError, setValue } = useFormContext();
+	const { carFoundStatus, setCarFoundStatus, setAutoData } = useMainContext();
 
 	return (
 		<FormBlock title="Автомобиль">
@@ -32,99 +36,61 @@ export default function Auto() {
 							requiredMsg="Если авто зарегистрировано, то необходимо ввести госномер."
 							helper="Введите госномер автомобиля чтобы мы нашли данные о нем"
 						/>
-						<button
-							type="button"
-							className="bg-kasko-blue"
-							onClick={() => {
-								console.log(watch("GOSnumber").toUpperCase());
-								const foundedCar = RegisteredAuto.find(
-									(car) =>
-										car.GOSnumber ===
-										watch("GOSnumber").toUpperCase()
-								);
-							}}
-						>
-							Найти
-						</button>
-					</>
-				)}
-				{watch("isCarRegistered") && (
-					<>
-						<SimpleSelect
-							data={AutoData.map((auto) => auto.make)}
-							name="made"
-							label="Марка"
-							required={true}
-						></SimpleSelect>
-						<SimpleSelect
-							data={AutoData.map((auto) => auto.model)}
-							name="model"
-							label="Модель"
-							required={true}
-						></SimpleSelect>
-						<SimpleSelect
-							data={AutoData.map((auto) =>
-								auto.releaseYear.toString()
-							)}
-							name="releaseYear"
-							label="Год выпуска"
-							required={true}
-						></SimpleSelect>
-						<SimpleSelect
-							data={AutoData.map((auto) => auto.power)}
-							name="power"
-							label="Мощность"
-							required={true}
-						></SimpleSelect>
-						<SimpleInput
-							name="todayCost"
-							placeholder="Текущая рыночная стоимость"
-							pattern={/^\d+$/}
-							patternMsg="Вы ввели не число!"
-							required={true}
-						/>
+						{carFoundStatus === "NOT_ENTERED" && (
+							<button
+								type="button"
+								className="bg-kasko-blue"
+								onClick={() => {
+									const foundedCar = RegisteredAuto.find(
+										(car) =>
+											car.GOSnumber ===
+											watch("GOSnumber").toUpperCase()
+									);
 
-						<section className="flex flex-col gap-3">
-							<h2 className="kasko-subtext">
-								Не обязательно для заполнения, но поможет лучше
-								уточнить стоимость вашего автомобиля
-							</h2>
-							<SimpleSelect
-								data={AutoData.map((auto) => auto.bodyType)}
-								name="bodyType"
-								label="Тип кузова"
-								required={false}
-							></SimpleSelect>
-							<SimpleSelect
-								data={AutoData.map((auto) => auto.gearBoxType)}
-								name="gearBoxType"
-								label="Тип КПП"
-								required={false}
-							></SimpleSelect>
-							<SimpleSelect
-								data={AutoData.map((auto) => auto.engine)}
-								name="engine"
-								label="Двигатель"
-								required={false}
-							></SimpleSelect>
-							<SimpleSelect
-								data={AutoData.map((auto) => auto.modification)}
-								name="modification"
-								label="Модификация"
-								required={false}
-							></SimpleSelect>
-							<div className="mt-4">
-								<SimpleInput
-									name="mileage"
-									placeholder="Приблизительный пробег, км"
-									pattern={/^\d+$/}
-									patternMsg="Вы ввели не число!"
-									required={false}
-								/>
-							</div>
-						</section>
+									if (!foundedCar) {
+										setCarFoundStatus("NOT_FOUND");
+										setError("GOSnumber", {
+											message:
+												"Не удалость получить данные авто по этому госномеру. Если номер введен правильно, укажите данные вручную",
+										});
+									} else {
+										if (
+											hasEmptyFields(foundedCar, [
+												"bodyType",
+												"gearBoxType",
+												"engine",
+												"modification",
+											])
+										) {
+											setError("GOSnumber", {
+												type: "warning",
+												message:
+													"Удалось получить не все данные авто по этому госномеру. Пожалуйста, заполните недостающие поля.",
+											});
+											setAutoData({
+												...foundedCar,
+												isCarRegistered: true,
+												power: "",
+												todayCost: "",
+												mileage: "",
+												minDriversAge: "",
+												minDriversExp: "",
+												hasActiveKasko: false,
+												isCarInCredit: false,
+											});
+											setCarFoundStatus("NOT_ALL");
+										}
+									}
+								}}
+							>
+								Найти
+							</button>
+						)}
 					</>
 				)}
+				{(watch("isCarRegistered") ||
+					carFoundStatus === "NOT_FOUND" ||
+					carFoundStatus === "NOT_ALL") && <AutoSub />}
 
 				<CheckBox
 					name="hasActiveKasko"
