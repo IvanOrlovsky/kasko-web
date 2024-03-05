@@ -4,4 +4,6 @@ export type SimpleSelectProps = {
 	data: string[];
 	required?: boolean;
 	requiredMsg?: string;
+	defaultValue?: string;
+	className?: string;
 };

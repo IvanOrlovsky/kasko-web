@@ -6,8 +6,12 @@ import AutoComplete from "@/components/inputs/AutoComplete";
 import Regions from "../../../../../public/datasets/Regions.json";
 import TwoOptionsSwitch from "@/components/inputs/TwoOprionsSwitch";
 import DateInput from "@/components/inputs/DataInput";
+import { useMainContext } from "@/contexts/MainContext";
 
 export default function InsuranceParams() {
+	const {
+		autoData: { make },
+	} = useMainContext();
 	return (
 		<FormBlock
 			title="Параметры страховки"
@@ -31,7 +35,7 @@ export default function InsuranceParams() {
 						option2="Обычная СТОА"
 					/>
 					<span className="self-start kasko-subtext">
-						СТОА официального дилера Subaru
+						СТОА официального дилера {make}
 					</span>
 				</div>
 				<div className="w-full flex flex-col items-center my-5">

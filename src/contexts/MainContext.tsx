@@ -45,6 +45,9 @@ export default function MainContextProvider({
 		insuranseDuration: "",
 		dateOfAgreementBegin: new Date().toDateString(),
 	});
+	const [carFoundStatus, setCarFoundStatus] = useState<
+		"NOT_ENTERED" | "NOT_ALL" | "ALL" | "NOT_FOUND"
+	>("NOT_ENTERED");
 
 	return (
 		<MainContext.Provider
@@ -55,6 +58,8 @@ export default function MainContextProvider({
 				setAutoData,
 				paramsData,
 				setParamsData,
+				carFoundStatus,
+				setCarFoundStatus,
 			}}
 		>
 			{children}
