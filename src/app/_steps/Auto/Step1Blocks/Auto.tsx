@@ -5,10 +5,10 @@ import CheckBox from "@/components/inputs/CheckBoxes";
 import { useFormContext } from "react-hook-form";
 
 import AutoData from "../../../../../public/datasets/AutoData.json";
-import MaskInput from "@/components/inputs/Maskinput";
+import RegisteredAuto from "../../../../../public/datasets/RegisteredAuto.json";
 
 export default function Auto() {
-	const { watch, trigger } = useFormContext();
+	const { watch, setError } = useFormContext();
 
 	return (
 		<FormBlock title="Автомобиль">
@@ -20,10 +20,14 @@ export default function Auto() {
 				/>
 				{!watch("isCarRegistered") && (
 					<>
-						<MaskInput
+						<SimpleInput
 							name="GOSnumber"
+							className="uppercase"
 							placeholder="A 000 AA 00"
-							mask="a 999 aa 99"
+							pattern={
+								/^[АВЕКМНОРСТУХавекмнорстухABEKMHOPCTYXabekmhopctyx]\s\d{3}\s[АВЕКМНОРСТУХавекмнорстухABEKMHOPCTYXabekmhopctyx]{2}\s\d{2}$/
+							}
+							patternMsg=""
 							required={!watch("isCarRegistered")}
 							requiredMsg="Если авто зарегистрировано, то необходимо ввести госномер."
 							helper="Введите госномер автомобиля чтобы мы нашли данные о нем"
@@ -31,7 +35,14 @@ export default function Auto() {
 						<button
 							type="button"
 							className="bg-kasko-blue"
-							onClick={() => trigger("GOSnumber")}
+							onClick={() => {
+								console.log(watch("GOSnumber").toUpperCase());
+								const foundedCar = RegisteredAuto.find(
+									(car) =>
+										car.GOSnumber ===
+										watch("GOSnumber").toUpperCase()
+								);
+							}}
 						>
 							Найти
 						</button>
