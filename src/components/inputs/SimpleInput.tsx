@@ -2,9 +2,11 @@
 
 import { SimpleInputProps } from "@/types/components/inputs/SimpleInput";
 import { useFormContext } from "react-hook-form";
+import { cn } from "@/lib/utils";
 
 export default function SimpleInput({
 	name,
+	className,
 	required,
 	helper,
 	requiredMsg,
@@ -16,6 +18,8 @@ export default function SimpleInput({
 		register,
 		formState: { errors },
 		clearErrors,
+		setError,
+		watch,
 	} = useFormContext();
 
 	return (
@@ -24,7 +28,20 @@ export default function SimpleInput({
 				type="text"
 				{...register(name, {
 					onChange: () => {
-						clearErrors(name);
+						if (!pattern) {
+							clearErrors(name);
+							return;
+						}
+
+						if (!pattern.test(watch(name)) && watch(name)) {
+							setError(name, {
+								type: "required",
+								message:
+									"Введенное значение не соотвествует формату госномера.",
+							});
+						} else {
+							clearErrors(name);
+						}
 					},
 					shouldUnregister: true,
 					required: required
@@ -42,20 +59,20 @@ export default function SimpleInput({
 						  }
 						: undefined,
 				})}
-				className={
-					errors[name]
-						? "floating-label-input-error peer"
-						: "floating-label-input peer"
-				}
+				className={cn("floating-label-input peer", className, {
+					"floating-label-input-error peer": errors[name],
+				})}
 				placeholder=" "
 			/>
 			<label
+				unselectable="on"
 				htmlFor={name}
-				className={
-					errors[name]
-						? "floating-label-error peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-5 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
-						: "floating-label peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-5 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
-				}
+				className={cn(
+					"floating-label peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-5 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto",
+					{
+						"floating-label-error": errors[name],
+					}
+				)}
 			>
 				{placeholder}
 			</label>

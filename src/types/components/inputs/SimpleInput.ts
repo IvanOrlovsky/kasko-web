@@ -1,5 +1,6 @@
 export type SimpleInputProps = {
 	name: string;
+	className?: string;
 	required?: boolean;
 	requiredMsg?: string;
 	helper?: string;
