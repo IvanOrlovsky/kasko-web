@@ -1,5 +1,7 @@
+//компоненты
 import FormBlock from "@/components/FormBlock";
 import SimpleInput from "@/components/inputs/SimpleInput";
+//хуки
 import { useMainContext } from "@/contexts/MainContext";
 import { useFormContext } from "react-hook-form";
 
@@ -23,14 +25,14 @@ export default function Drivers() {
 					<SimpleInput
 						name="minDriversAge"
 						placeholder="Минимальный возраст водителей"
-						required={watch("isCarRegistered")}
+						required={true}
 						pattern={/^\d+$/}
 						patternMsg="Вы ввели не число!"
 					/>
 					<SimpleInput
 						name="minDriversExp"
 						placeholder="Минимальный стаж водителей"
-						required={watch("isCarRegistered")}
+						required={true}
 						pattern={/^\d+$/}
 						patternMsg="Вы ввели не число!"
 					/>

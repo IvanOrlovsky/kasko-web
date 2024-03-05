@@ -14,6 +14,7 @@ export default function SimpleInput({
 	pattern,
 	patternMsg,
 	defaultValue,
+	disabled,
 }: SimpleInputProps) {
 	const {
 		register,
@@ -26,6 +27,8 @@ export default function SimpleInput({
 	return (
 		<div className="relative">
 			<input
+				id={name}
+				disabled={disabled}
 				type="text"
 				defaultValue={defaultValue}
 				{...register(name, {
@@ -39,13 +42,12 @@ export default function SimpleInput({
 							setError(name, {
 								type: "required",
 								message:
-									"Введенное значение не соотвествует формату госномера.",
+									"Введенное значение не соотвествует формату.",
 							});
 						} else {
 							clearErrors(name);
 						}
 					},
-					shouldUnregister: true,
 					required: required
 						? {
 								value: true,

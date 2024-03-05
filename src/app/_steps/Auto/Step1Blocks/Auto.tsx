@@ -1,28 +1,34 @@
+//компоненты
 import FormBlock from "@/components/FormBlock";
 import SimpleInput from "@/components/inputs/SimpleInput";
-import SimpleSelect from "@/components/inputs/SimpleSelect";
 import CheckBox from "@/components/inputs/CheckBoxes";
+//блоки
+import AutoDataInput from "./AutoDataInput";
+//хуки
 import { useFormContext } from "react-hook-form";
 import { useMainContext } from "@/contexts/MainContext";
-
-import AutoData from "../../../../../public/datasets/AutoData.json";
+//данные
 import RegisteredAuto from "../../../../../public/datasets/RegisteredAuto.json";
+//вспомогательные функции
 import { hasEmptyFields } from "@/lib/utils";
-import AutoSub from "./AutoSub";
 
 export default function Auto() {
-	const { watch, setError, setValue } = useFormContext();
-	const { carFoundStatus, setCarFoundStatus, setAutoData } = useMainContext();
+	const { watch, setError } = useFormContext();
+	const { carFoundStatus, setCarFoundStatus, setAutoData, autoData } =
+		useMainContext();
 
 	return (
 		<FormBlock title="Автомобиль">
 			<>
-				<CheckBox
-					name="isCarRegistered"
-					label="Авто еще не зарегистрировано"
-					hint="Отметьте галочкой, если авто не зарегистрировано, чтобы перейти к заполнению данных об авто."
-				/>
-				{!watch("isCarRegistered") && (
+				{carFoundStatus !== "NOT_ALL" && (
+					<CheckBox
+						name="isCarRegistered"
+						label="Авто еще не зарегистрировано"
+						hint="Отметьте галочкой, если авто не зарегистрировано, чтобы перейти к заполнению данных об авто."
+					/>
+				)}
+				{(!watch("isCarRegistered") ||
+					carFoundStatus === "NOT_ALL") && (
 					<>
 						<SimpleInput
 							name="GOSnumber"
@@ -34,8 +40,24 @@ export default function Auto() {
 							patternMsg=""
 							required={!watch("isCarRegistered")}
 							requiredMsg="Если авто зарегистрировано, то необходимо ввести госномер."
-							helper="Введите госномер автомобиля чтобы мы нашли данные о нем"
+							disabled={
+								carFoundStatus === "NOT_ALL" && !!autoData.make
+							}
+							helper={
+								carFoundStatus === "NOT_ALL"
+									? ""
+									: 'Введите госномер автомобиля чтобы мы нашли данные о нем. \n Подсказка: "У 888 ВВ 11" - номер авто, с неполными данными '
+							}
 						/>
+
+						{carFoundStatus === "NOT_ALL" && (
+							<div className="floating-label-input-warning">
+								Удалось получить не все данные авто по этому
+								госномеру. Пожалуйста, заполните недостающие
+								поля.
+							</div>
+						)}
+
 						{carFoundStatus === "NOT_ENTERED" && (
 							<button
 								type="button"
@@ -50,6 +72,7 @@ export default function Auto() {
 									if (!foundedCar) {
 										setCarFoundStatus("NOT_FOUND");
 										setError("GOSnumber", {
+											type: "required",
 											message:
 												"Не удалость получить данные авто по этому госномеру. Если номер введен правильно, укажите данные вручную",
 										});
@@ -62,15 +85,9 @@ export default function Auto() {
 												"modification",
 											])
 										) {
-											setError("GOSnumber", {
-												type: "warning",
-												message:
-													"Удалось получить не все данные авто по этому госномеру. Пожалуйста, заполните недостающие поля.",
-											});
 											setAutoData({
 												...foundedCar,
 												isCarRegistered: true,
-												power: "",
 												todayCost: "",
 												mileage: "",
 												minDriversAge: "",
@@ -78,6 +95,7 @@ export default function Auto() {
 												hasActiveKasko: false,
 												isCarInCredit: false,
 											});
+
 											setCarFoundStatus("NOT_ALL");
 										}
 									}
@@ -90,7 +108,7 @@ export default function Auto() {
 				)}
 				{(watch("isCarRegistered") ||
 					carFoundStatus === "NOT_FOUND" ||
-					carFoundStatus === "NOT_ALL") && <AutoSub />}
+					carFoundStatus === "NOT_ALL") && <AutoDataInput />}
 
 				<CheckBox
 					name="hasActiveKasko"

@@ -6,4 +6,6 @@ export type SimpleSelectProps = {
 	requiredMsg?: string;
 	defaultValue?: string;
 	className?: string;
+	disabled?: boolean;
+	staticValue?: string;
 };

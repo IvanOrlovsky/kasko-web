@@ -1,11 +1,13 @@
 "use client";
-
+//компоненты
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import NavChip from "@/components/data-display/NavChip";
-import Step1 from "./_steps/Auto/Step1";
-import { useMainContext } from "@/contexts/MainContext";
-import Step2 from "./_steps/Parameters/Step2";
 import Footer from "@/components/Footer";
+//блоки
+import Step1 from "./_steps/Auto/Step1";
+import Step2 from "./_steps/Parameters/Step2";
+//хуки
+import { useMainContext } from "@/contexts/MainContext";
 
 export default function Home() {
 	const { step, setStep } = useMainContext();

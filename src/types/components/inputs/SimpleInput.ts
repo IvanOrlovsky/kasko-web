@@ -8,4 +8,5 @@ export type SimpleInputProps = {
 	pattern?: RegExp;
 	patternMsg?: string;
 	defaultValue?: string;
+	disabled?: boolean;
 };

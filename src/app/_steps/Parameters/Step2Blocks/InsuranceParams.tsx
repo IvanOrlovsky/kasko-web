@@ -1,12 +1,14 @@
 "use client";
-
+//компоненты
 import FormBlock from "@/components/FormBlock";
 import { CurrencyRangeInput } from "@/components/inputs/RangeInputs";
 import AutoComplete from "@/components/inputs/AutoComplete";
-import Regions from "../../../../../public/datasets/Regions.json";
 import TwoOptionsSwitch from "@/components/inputs/TwoOprionsSwitch";
 import DateInput from "@/components/inputs/DataInput";
+//хуки
 import { useMainContext } from "@/contexts/MainContext";
+//данные
+import Regions from "../../../../../public/datasets/Regions.json";
 
 export default function InsuranceParams() {
 	const {
