@@ -19,7 +19,7 @@ export default function FormBlock({
 					type="submit"
 					form={forForm}
 					onClick={() => trigger("todayCost")}
-					className="bg-kasko-blue  mb-5"
+					className="button  mb-5"
 				>
 					{submitBtnLabel}
 				</button>

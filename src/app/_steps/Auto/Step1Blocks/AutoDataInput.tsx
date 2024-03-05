@@ -7,7 +7,7 @@ import { useMainContext } from "@/contexts/MainContext";
 import AutoData from "../../../../../public/datasets/AutoData.json";
 
 export default function AutoDataInput() {
-	const { autoData, carFoundStatus } = useMainContext();
+	const { step, autoData, carFoundStatus } = useMainContext();
 	return (
 		<>
 			<SimpleSelect
@@ -16,7 +16,9 @@ export default function AutoDataInput() {
 				label="Марка"
 				required={true}
 				staticValue={
-					carFoundStatus === "NOT_ALL" && !!autoData.make
+					step === 2.5
+						? undefined
+						: carFoundStatus === "NOT_ALL" && !!autoData.make
 						? autoData.make
 						: undefined
 				}
@@ -27,7 +29,9 @@ export default function AutoDataInput() {
 				label="Модель"
 				required={true}
 				staticValue={
-					carFoundStatus === "NOT_ALL" && !!autoData.model
+					step === 2.5
+						? undefined
+						: carFoundStatus === "NOT_ALL" && !!autoData.model
 						? autoData.model
 						: undefined
 				}
@@ -38,7 +42,9 @@ export default function AutoDataInput() {
 				label="Год выпуска"
 				required={true}
 				staticValue={
-					carFoundStatus === "NOT_ALL" && !!autoData.releaseYear
+					step === 2.5
+						? undefined
+						: carFoundStatus === "NOT_ALL" && !!autoData.releaseYear
 						? autoData.releaseYear
 						: undefined
 				}
@@ -49,29 +55,24 @@ export default function AutoDataInput() {
 				label="Мощность"
 				required={true}
 				staticValue={
-					carFoundStatus === "NOT_ALL" && !!autoData.power
+					step === 2.5
+						? undefined
+						: carFoundStatus === "NOT_ALL" && !!autoData.power
 						? autoData.power
 						: undefined
 				}
 			></SimpleSelect>
-			<SimpleInput
-				name="todayCost"
-				placeholder="Текущая рыночная стоимость"
-				pattern={/^\d+$/}
-				patternMsg="Вы ввели не число!"
-				required={true}
-				defaultValue={autoData.todayCost}
-			/>
+
 			<NotRequiredSection />
 		</>
 	);
 }
 
 function NotRequiredSection() {
-	const { autoData, carFoundStatus } = useMainContext();
+	const { step, autoData, carFoundStatus } = useMainContext();
 
 	return (
-		<section className="flex flex-col gap-3">
+		<section className="flex flex-col gap-3 my-4">
 			<h2 className="kasko-subtext">
 				Не обязательно для заполнения, но поможет лучше уточнить
 				стоимость вашего автомобиля
@@ -82,7 +83,9 @@ function NotRequiredSection() {
 				label="Тип кузова"
 				required={false}
 				staticValue={
-					carFoundStatus === "NOT_ALL" && !!autoData.bodyType
+					step === 2.5
+						? undefined
+						: carFoundStatus === "NOT_ALL" && !!autoData.bodyType
 						? autoData.bodyType
 						: undefined
 				}
@@ -93,7 +96,9 @@ function NotRequiredSection() {
 				label="Тип КПП"
 				required={false}
 				staticValue={
-					carFoundStatus === "NOT_ALL" && !!autoData.gearBoxType
+					step === 2.5
+						? undefined
+						: carFoundStatus === "NOT_ALL" && !!autoData.gearBoxType
 						? autoData.gearBoxType
 						: undefined
 				}
@@ -104,7 +109,9 @@ function NotRequiredSection() {
 				label="Двигатель"
 				required={false}
 				staticValue={
-					carFoundStatus === "NOT_ALL" && !!autoData.engine
+					step === 2.5
+						? undefined
+						: carFoundStatus === "NOT_ALL" && !!autoData.engine
 						? autoData.engine
 						: undefined
 				}
@@ -115,23 +122,14 @@ function NotRequiredSection() {
 				label="Модификация"
 				required={false}
 				staticValue={
-					carFoundStatus === "NOT_ALL" && !!autoData.modification
+					step === 2.5
+						? undefined
+						: carFoundStatus === "NOT_ALL" &&
+						  !!autoData.modification
 						? autoData.modification
 						: undefined
 				}
 			></SimpleSelect>
-			<div className="mt-4">
-				<SimpleInput
-					name="mileage"
-					placeholder="Приблизительный пробег, км"
-					pattern={/^\d+$/}
-					patternMsg="Вы ввели не число!"
-					required={false}
-					disabled={
-						carFoundStatus === "NOT_ALL" && !!autoData.mileage
-					}
-				/>
-			</div>
 		</section>
 	);
 }
