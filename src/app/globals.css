@@ -13,7 +13,7 @@
 	}
 
 	button {
-		@apply hover:bg-[#0e81bb] active:bg-[#0a5880] bg-[#1698D9] rounded-2xl mb-5 py-[15px] font-roboto text-white font-semibold text-lg;
+		@apply hover:bg-[#0e81bb] active:bg-[#0a5880] bg-[#1698D9] rounded-2xl py-[15px] font-roboto text-white font-semibold text-lg;
 	}
 }
 
