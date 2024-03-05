@@ -12,7 +12,7 @@ export default function Step1() {
 	const { setStep, autoData, setAutoData } = useMainContext();
 
 	const form = useForm<AutoFormValues>({
-		defaultValues: { ...autoData },
+		values: autoData,
 		shouldUnregister: true,
 	});
 
@@ -32,7 +32,7 @@ export default function Step1() {
 				<DocTS />
 				<Drivers />
 			</form>
-			{/* <DevTool control={form.control} /> */}
+			<DevTool control={form.control} />
 		</FormProvider>
 	);
 }
