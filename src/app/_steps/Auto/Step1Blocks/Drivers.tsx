@@ -1,11 +1,17 @@
 import FormBlock from "@/components/FormBlock";
 import SimpleInput from "@/components/inputs/SimpleInput";
+import { useMainContext } from "@/contexts/MainContext";
 import { useFormContext } from "react-hook-form";
 
 export default function Drivers() {
 	const { watch } = useFormContext();
+	const { carFoundStatus } = useMainContext();
 
-	if (watch("isCarRegistered")) {
+	if (
+		watch("isCarRegistered") ||
+		carFoundStatus === "NOT_FOUND" ||
+		carFoundStatus === "NOT_ALL"
+	) {
 		return (
 			<FormBlock
 				title="Водители"
