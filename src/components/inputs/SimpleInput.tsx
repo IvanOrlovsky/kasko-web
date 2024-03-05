@@ -1,6 +1,5 @@
 "use client";
 
-
 import { SimpleInputProps } from "@/types/components/inputs/SimpleInput";
 import { useFormContext } from "react-hook-form";
 
@@ -45,8 +44,8 @@ export default function SimpleInput({
 				})}
 				className={
 					errors[name]
-						? "block rounded-[4px] px-4 pb-[15px] pt-5 w-full font-roboto font-normal text-base text-gray-900 bg-[#FEE7EA]  border-2 border-[#F3566A] appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-						: "block rounded-[4px] px-4 pb-[15px] pt-5 w-full font-roboto font-normal text-base text-gray-900 bg-[#F1F2F6]  border-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+						? "floating-label-input-error peer"
+						: "floating-label-input peer"
 				}
 				placeholder=" "
 			/>
@@ -54,8 +53,8 @@ export default function SimpleInput({
 				htmlFor={name}
 				className={
 					errors[name]
-						? "absolute font-roboto font-normal text-base text-[#F3566A]  duration-300 transform -translate-y-4 scale-75 top-5 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-5 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
-						: "absolute font-roboto font-normal text-base text-[#737B8C]  duration-300 transform -translate-y-4 scale-75 top-5 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-5 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+						? "floating-label-error peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-5 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+						: "floating-label peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-5 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
 				}
 			>
 				{placeholder}
@@ -64,8 +63,8 @@ export default function SimpleInput({
 				htmlFor={name}
 				className={
 					errors[name]?.message
-						? "font-roboto font-normal text-sm text-[#F3566A]"
-						: "font-roboto font-normal text-sm text-[#737B8C]"
+						? "kasko-subtext-error"
+						: "kasko-subtext"
 				}
 			>
 				{errors[name]?.message ? String(errors[name]?.message) : helper}

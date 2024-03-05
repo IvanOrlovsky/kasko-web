@@ -24,15 +24,13 @@ export default function InsuranceParams() {
 				/>
 
 				<div className="w-full flex flex-col items-center my-5">
-					<h2 className="self-start font-roboto text-[#1F232B] text-[16px] font-bold ">
-						Ремонт от страховщика
-					</h2>
+					<h2 className="self-start">Ремонт от страховщика</h2>
 					<TwoOptionsSwitch
 						name="repair"
 						option1="Дилерская СТОА"
 						option2="Обычная СТОА"
 					/>
-					<span className="self-start font-roboto text-[#737B8C] text-[14px] font-medium">
+					<span className="self-start kasko-subtext">
 						СТОА официального дилера Subaru
 					</span>
 				</div>
