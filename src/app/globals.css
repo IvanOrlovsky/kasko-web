@@ -11,14 +11,14 @@
 	h2 {
 		@apply font-roboto text-xl sm:text-2xl font-semibold text-[#1F232B];
 	}
+}
 
-	button {
-		@apply hover:bg-[#0e81bb] active:bg-[#0a5880] bg-[#1698D9] rounded-2xl py-[15px] font-roboto text-white font-semibold text-lg;
-	}
+.button {
+	@apply hover:bg-[#0e81bb] active:bg-[#0a5880] bg-[#1698D9] rounded-2xl py-[15px] font-roboto text-white font-semibold text-lg;
+}
 
-	option {
-		@apply p-10 w-full font-roboto font-normal text-base text-gray-900;
-	}
+.button-subtext {
+	@apply hover:bg-[#b4dff3] active:bg-[#59a9d1] bg-[#DDF3FD] rounded-md py-[15px] font-roboto text-[#1698D9] font-normal text-base;
 }
 
 .header {
@@ -27,6 +27,10 @@
 
 .footer {
 	@apply bg-white rounded-t-2xl p-4 flex flex-col shrink-0 fixed bottom-0 min-w-full  z-50;
+}
+
+.kasko-text-xs {
+	@apply font-roboto font-normal text-xs text-[#1F232B];
 }
 
 .kasko-subtext {
