@@ -38,7 +38,7 @@
 }
 
 .floating-label-input-error {
-	@apply block rounded-[4px] px-4 pb-[15px] pt-5 w-full font-roboto font-normal text-base text-gray-900 bg-[#FEE7EA]  border-2 border-[#F3566A] appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600;
+	@apply block rounded-[4px] px-4 pb-[15px] pt-5 w-full font-roboto font-normal text-base text-gray-900 bg-[#FEE7EA]  border-2 border-[#F3566A] appearance-none    focus:outline-none focus:ring-0 focus:border-[#F3566A];
 }
 
 .floating-label {
