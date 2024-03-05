@@ -98,5 +98,25 @@
 		"gearBoxType": "Экономичная",
 		"engine": "1.7 л.",
 		"modification": "гоночный"
+	},
+	{
+		"make": "Нива Шевроле",
+		"model": "Калина",
+		"releaseYear": "2007",
+		"bodyType": "кроссовер",
+		"power": "123 л. с.",
+		"gearBoxType": "гидравлическая",
+		"engine": "3 л.",
+		"modification": "Базовая"
+	},
+	{
+		"make": "Нива Шевроле",
+		"model": "",
+		"power": "500 л. с.",
+		"releaseYear": "1991",
+		"bodyType": "кабриолет",
+		"gearBoxType": "механическая",
+		"engine": "2 л.",
+		"modification": "Базовая"
 	}
 ]
