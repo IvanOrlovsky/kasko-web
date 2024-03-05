@@ -7,4 +7,6 @@ export type SimpleInputProps = {
 	placeholder?: string;
 	pattern?: RegExp;
 	patternMsg?: string;
+	defaultValue?: string;
+	disabled?: boolean;
 };

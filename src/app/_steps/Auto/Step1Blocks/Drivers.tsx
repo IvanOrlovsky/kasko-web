@@ -1,11 +1,19 @@
+//компоненты
 import FormBlock from "@/components/FormBlock";
 import SimpleInput from "@/components/inputs/SimpleInput";
+//хуки
+import { useMainContext } from "@/contexts/MainContext";
 import { useFormContext } from "react-hook-form";
 
 export default function Drivers() {
 	const { watch } = useFormContext();
+	const { carFoundStatus } = useMainContext();
 
-	if (watch("isCarRegistered")) {
+	if (
+		watch("isCarRegistered") ||
+		carFoundStatus === "NOT_FOUND" ||
+		carFoundStatus === "NOT_ALL"
+	) {
 		return (
 			<FormBlock
 				title="Водители"
@@ -17,14 +25,14 @@ export default function Drivers() {
 					<SimpleInput
 						name="minDriversAge"
 						placeholder="Минимальный возраст водителей"
-						required={watch("isCarRegistered")}
+						required={true}
 						pattern={/^\d+$/}
 						patternMsg="Вы ввели не число!"
 					/>
 					<SimpleInput
 						name="minDriversExp"
 						placeholder="Минимальный стаж водителей"
-						required={watch("isCarRegistered")}
+						required={true}
 						pattern={/^\d+$/}
 						patternMsg="Вы ввели не число!"
 					/>

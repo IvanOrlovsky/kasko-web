@@ -13,6 +13,8 @@ export default function SimpleInput({
 	placeholder,
 	pattern,
 	patternMsg,
+	defaultValue,
+	disabled,
 }: SimpleInputProps) {
 	const {
 		register,
@@ -25,7 +27,10 @@ export default function SimpleInput({
 	return (
 		<div className="relative">
 			<input
+				id={name}
+				disabled={disabled}
 				type="text"
+				defaultValue={defaultValue}
 				{...register(name, {
 					onChange: () => {
 						if (!pattern) {
@@ -37,13 +42,12 @@ export default function SimpleInput({
 							setError(name, {
 								type: "required",
 								message:
-									"Введенное значение не соотвествует формату госномера.",
+									"Введенное значение не соотвествует формату.",
 							});
 						} else {
 							clearErrors(name);
 						}
 					},
-					shouldUnregister: true,
 					required: required
 						? {
 								value: true,
@@ -60,7 +64,11 @@ export default function SimpleInput({
 						: undefined,
 				})}
 				className={cn("floating-label-input peer", className, {
-					"floating-label-input-error peer": errors[name],
+					"floating-label-input-error peer":
+						errors[name]?.type === "required" ||
+						errors[name]?.type === "pattern",
+					"floating-label-input-warning peer":
+						errors[name]?.type === "warning",
 				})}
 				placeholder=" "
 			/>
@@ -70,7 +78,11 @@ export default function SimpleInput({
 				className={cn(
 					"floating-label peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-5 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto",
 					{
-						"floating-label-error": errors[name],
+						"floating-label-error":
+							errors[name]?.type === "required" ||
+							errors[name]?.type === "pattern",
+						"floating-label-warning":
+							errors[name]?.type === "warning",
 					}
 				)}
 			>
@@ -78,11 +90,12 @@ export default function SimpleInput({
 			</label>
 			<label
 				htmlFor={name}
-				className={
-					errors[name]?.message
-						? "kasko-subtext-error"
-						: "kasko-subtext"
-				}
+				className={cn("kasko-subtext", {
+					"kasko-subtext-error":
+						errors[name]?.type === "required" ||
+						errors[name]?.type === "pattern",
+					"kasko-subtext-warning": errors[name]?.type === "warning",
+				})}
 			>
 				{errors[name]?.message ? String(errors[name]?.message) : helper}
 			</label>

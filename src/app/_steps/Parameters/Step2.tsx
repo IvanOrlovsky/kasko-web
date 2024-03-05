@@ -1,10 +1,13 @@
 "use client";
-
+//типы
+import { ParametersFormValues } from "@/types/forms/ParametersForm";
+//хуки
 import { useForm, FormProvider } from "react-hook-form";
 import { useMainContext } from "@/contexts/MainContext";
+//блоки
 import InsuranceParams from "./Step2Blocks/InsuranceParams";
+
 import { DevTool } from "@hookform/devtools";
-import { ParametersFormValues } from "@/types/forms/ParametersForm";
 
 export default function Step2() {
 	const { setStep, paramsData, setParamsData } = useMainContext();

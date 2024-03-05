@@ -8,4 +8,8 @@ export type MainContextType = {
 	setAutoData: React.Dispatch<React.SetStateAction<AutoFormValues>>;
 	paramsData: ParametersFormValues;
 	setParamsData: React.Dispatch<React.SetStateAction<ParametersFormValues>>;
+	carFoundStatus: "NOT_ENTERED" | "NOT_ALL" | "ALL" | "NOT_FOUND";
+	setCarFoundStatus: React.Dispatch<
+		React.SetStateAction<"NOT_ENTERED" | "NOT_ALL" | "ALL" | "NOT_FOUND">
+	>;
 };

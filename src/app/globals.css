@@ -15,6 +15,10 @@
 	button {
 		@apply hover:bg-[#0e81bb] active:bg-[#0a5880] bg-[#1698D9] rounded-2xl py-[15px] font-roboto text-white font-semibold text-lg;
 	}
+
+	option {
+		@apply p-10 w-full font-roboto font-normal text-base text-gray-900;
+	}
 }
 
 .header {
@@ -33,6 +37,10 @@
 	@apply font-roboto font-normal text-sm text-[#F3566A];
 }
 
+.kasko-subtext-warning {
+	@apply font-roboto font-normal text-sm text-[#4a4b13];
+}
+
 .floating-label-input {
 	@apply block rounded-[4px] px-4 pb-[15px] pt-5 w-full font-roboto font-normal text-base text-gray-900 bg-kasko-bg  border-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600;
 }
@@ -41,10 +49,18 @@
 	@apply block rounded-[4px] px-4 pb-[15px] pt-5 w-full font-roboto font-normal text-base text-gray-900 bg-[#FEE7EA]  border-2 border-[#F3566A] appearance-none    focus:outline-none focus:ring-0 focus:border-[#F3566A];
 }
 
+.floating-label-input-warning {
+	@apply block rounded-[4px] px-4 pb-[15px] pt-5 w-full font-roboto font-normal text-base text-gray-900 bg-[#f7f89b]  border-2 border-[#e6d81e] appearance-none    focus:outline-none focus:ring-0 focus:border-[#e6d81e];
+}
+
 .floating-label {
 	@apply absolute font-roboto font-normal text-base text-[#737B8C]  duration-300 transform -translate-y-4 scale-75 top-5 z-10 origin-[0] start-2.5;
 }
 
 .floating-label-error {
 	@apply absolute font-roboto font-normal text-base text-[#F3566A]  duration-300 transform -translate-y-4 scale-75 top-5 z-10 origin-[0] start-2.5;
+}
+
+.floating-label-warning {
+	@apply absolute font-roboto font-normal text-base text-[#4a4b13]  duration-300 transform -translate-y-4 scale-75 top-5 z-10 origin-[0] start-2.5;
 }

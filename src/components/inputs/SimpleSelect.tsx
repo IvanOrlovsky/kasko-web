@@ -23,6 +23,8 @@ export default function SimpleSelect({
 	data,
 	required,
 	requiredMsg,
+	disabled,
+	staticValue,
 }: SimpleSelectProps) {
 	const {
 		formState: { errors },
@@ -36,7 +38,6 @@ export default function SimpleSelect({
 				control={control}
 				name={name}
 				rules={{
-					shouldUnregister: true,
 					required:
 						required &&
 						(requiredMsg ? requiredMsg : "Обязательное поле"),
@@ -55,7 +56,13 @@ export default function SimpleSelect({
 									border: "2px solid #F3566A",
 								},
 							}}
+							disabled={disabled || !!staticValue}
 						>
+							{staticValue && (
+								<MenuItem selected value={staticValue}>
+									{staticValue}
+								</MenuItem>
+							)}
 							{data.map((option) => (
 								<MenuItem key={option} value={option}>
 									{option}

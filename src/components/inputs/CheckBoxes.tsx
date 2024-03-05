@@ -28,7 +28,9 @@ export default function CheckBox({
 						required={required}
 						control={
 							<Checkbox
-								{...register(name)}
+								{...register(name, {
+									shouldUnregister: false,
+								})}
 								className="text-[#A2ADC1]"
 								defaultChecked={defaultChecked}
 							/>

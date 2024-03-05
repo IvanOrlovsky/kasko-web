@@ -2,7 +2,7 @@
 	{
 		"make": "Москвич",
 		"model": "Модель Б",
-		"releaseYear": 1950,
+		"releaseYear": "1950",
 		"power": "449 л.с.",
 		"bodyType": "кроссовер",
 		"gearBoxType": "Спортивная",
@@ -12,7 +12,7 @@
 	{
 		"make": "КамАЗ",
 		"model": "Модель В",
-		"releaseYear": 1989,
+		"releaseYear": "1989",
 		"power": "120 л.с.",
 		"bodyType": "лимузин",
 		"gearBoxType": "Гидравлическая",
@@ -22,7 +22,7 @@
 	{
 		"make": "ГАЗ",
 		"model": "Модель А",
-		"releaseYear": 1950,
+		"releaseYear": "1950",
 		"power": "921 л.с.",
 		"bodyType": "купе",
 		"gearBoxType": "Пневматическая",
@@ -32,7 +32,7 @@
 	{
 		"make": "УАЗ",
 		"model": "Модель Б",
-		"releaseYear": 2017,
+		"releaseYear": "2017",
 		"power": "891 л.с.",
 		"bodyType": "хэтчбек",
 		"gearBoxType": "Электронная",
@@ -42,7 +42,7 @@
 	{
 		"make": "Волга",
 		"model": "Модель Г",
-		"releaseYear": 1997,
+		"releaseYear": "1997",
 		"power": "732 л.с.",
 		"bodyType": "универсал",
 		"gearBoxType": "Полуавтоматическая",
@@ -52,7 +52,7 @@
 	{
 		"make": "Лада",
 		"model": "Модель Д",
-		"releaseYear": 1969,
+		"releaseYear": "1969",
 		"power": "323 л.с.",
 		"bodyType": "универсал",
 		"gearBoxType": "Спортивная",
@@ -62,7 +62,7 @@
 	{
 		"make": "Лада",
 		"model": "Модель Б",
-		"releaseYear": 2019,
+		"releaseYear": "2019",
 		"power": "818 л.с.",
 		"bodyType": "универсал",
 		"gearBoxType": "Гидравлическая",
@@ -72,7 +72,7 @@
 	{
 		"make": "УАЗ",
 		"model": "Модель К",
-		"releaseYear": 2019,
+		"releaseYear": "2019",
 		"power": "205 л.с.",
 		"bodyType": "купе",
 		"gearBoxType": "Пневматическая",
@@ -82,7 +82,7 @@
 	{
 		"make": "Москвич",
 		"model": "Модель И",
-		"releaseYear": 1978,
+		"releaseYear": "1978",
 		"power": "241 л.с.",
 		"bodyType": "лимузин",
 		"gearBoxType": "Механическая",
@@ -92,7 +92,7 @@
 	{
 		"make": "ПАЗ",
 		"model": "Модель И",
-		"releaseYear": 2022,
+		"releaseYear": "2022",
 		"power": "639 л.с.",
 		"bodyType": "лимузин",
 		"gearBoxType": "Экономичная",
