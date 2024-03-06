@@ -21,9 +21,11 @@ export default function BigCheck({
 	return (
 		<div
 			className={cn(
-				"flex flex-row gap-3 justify-start bg-white rounded-lg border-2 border-[#DCE1EF] p-4",
+				"flex flex-row gap-3 justify-start bg-white rounded-lg border-2 p-4",
 				{
 					"hover:cursor-pointer": !defaultChecked,
+					"border-[#03a9f4]": checked,
+					"border-[#DCE1EF]": !checked,
 				}
 			)}
 			onClick={() => {
@@ -36,9 +38,7 @@ export default function BigCheck({
 			<input type="hidden" {...register(name)} />
 			<div>
 				{defaultChecked && <CheckIcon color="success" />}
-				{!defaultChecked && checked && (
-					<CheckCircleIcon color="success" />
-				)}
+				{!defaultChecked && checked && <CheckCircleIcon color="info" />}
 				{!defaultChecked && !checked && <RadioButtonUncheckedIcon />}
 			</div>
 			<div className="self-stretch grow flex flex-col gap-1">
