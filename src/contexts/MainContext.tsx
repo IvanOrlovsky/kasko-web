@@ -3,6 +3,8 @@
 import { MainContextType } from "@/types/contexts/MainContext";
 import { AutoFormValues } from "@/types/forms/AutoForm";
 import { ParametersFormValues } from "@/types/forms/ParametersForm";
+import { RisksFormValues } from "@/types/forms/RisksForm";
+
 import React, { createContext, useState, useContext } from "react";
 
 const MainContext = createContext<MainContextType | null>(null);
@@ -13,6 +15,7 @@ export default function MainContextProvider({
 	children: React.ReactNode;
 }) {
 	const [step, setStep] = useState(1);
+
 	const [autoData, setAutoData] = useState<AutoFormValues>({
 		isCarRegistered: false,
 		GOSnumber: "",
@@ -34,6 +37,7 @@ export default function MainContextProvider({
 		PTSnumber: "",
 		VIN: "",
 	});
+
 	const [paramsData, setParamsData] = useState<ParametersFormValues>({
 		region: {
 			label: "Популярные",
@@ -45,9 +49,19 @@ export default function MainContextProvider({
 		insuranseDuration: "",
 		dateOfAgreementBegin: new Date().toDateString(),
 	});
+
 	const [carFoundStatus, setCarFoundStatus] = useState<
 		"NOT_ENTERED" | "NOT_ALL" | "ALL" | "NOT_FOUND"
 	>("NOT_ENTERED");
+
+	const [risksData, setRisksData] = useState<RisksFormValues>({
+		crime: true,
+		gap: false,
+		accident: false,
+		evacuation: false,
+		carAccidentCommisar: false,
+		techHelp: false,
+	});
 
 	return (
 		<MainContext.Provider
@@ -56,6 +70,8 @@ export default function MainContextProvider({
 				setStep,
 				autoData,
 				setAutoData,
+				risksData,
+				setRisksData,
 				paramsData,
 				setParamsData,
 				carFoundStatus,
