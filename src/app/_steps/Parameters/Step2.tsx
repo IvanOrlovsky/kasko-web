@@ -13,7 +13,7 @@ export default function Step2() {
 	const { setStep, paramsData, setParamsData } = useMainContext();
 
 	const form = useForm<ParametersFormValues>({
-		defaultValues: { ...paramsData },
+		values: { ...paramsData },
 	});
 
 	const onSubmit = (data: ParametersFormValues) => {

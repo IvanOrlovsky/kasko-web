@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import Step1 from "./_steps/Auto/Step1";
 import Step2 from "./_steps/Parameters/Step2";
 import Step25 from "./_steps/AutoEdit/Step25";
+import Step3 from "./_steps/Risks/Step3";
 //хуки
 import { useMainContext } from "@/contexts/MainContext";
 
@@ -56,7 +57,7 @@ export default function Home() {
 						<NavChip
 							letterInCircle="5"
 							label="Оплата"
-							active={step === 4}
+							active={step === 5}
 						/>
 					</div>
 				</>
@@ -64,6 +65,7 @@ export default function Home() {
 			{step === 1 && <Step1 />}
 			{step === 2 && <Step2 />}
 			{step === 2.5 && <Step25 />}
+			{step === 3 && <Step3 />}
 			{step > 1 && step !== 2.5 && <Footer />}
 		</main>
 	);
