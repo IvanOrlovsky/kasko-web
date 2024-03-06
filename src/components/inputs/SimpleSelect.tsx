@@ -63,8 +63,8 @@ export default function SimpleSelect({
 									{staticValue}
 								</MenuItem>
 							)}
-							{data.map((option) => (
-								<MenuItem key={option} value={option}>
+							{data.map((option, index) => (
+								<MenuItem key={index} value={option}>
 									{option}
 								</MenuItem>
 							))}

@@ -12,7 +12,8 @@ export default function DocTS() {
 
 	if (
 		(watch("isCarRegistered") || carFoundStatus === "NOT_FOUND") &&
-		carFoundStatus !== "NOT_ALL"
+		carFoundStatus !== "NOT_ALL" &&
+		carFoundStatus !== "ALL"
 	) {
 		return (
 			<FormBlock title="Документ ТС">

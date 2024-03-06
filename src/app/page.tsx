@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 //блоки
 import Step1 from "./_steps/Auto/Step1";
 import Step2 from "./_steps/Parameters/Step2";
+import Step25 from "./_steps/AutoEdit/Step25";
 //хуки
 import { useMainContext } from "@/contexts/MainContext";
 
@@ -17,6 +18,9 @@ export default function Home() {
 			<span
 				className="font-roboto w-fit text-[#1698D9]  mx-[16px] text-md sm:text-xl hover:cursor-pointer hover:text-[#19437a]"
 				onClick={() => {
+					if (step === 2.5) {
+						setStep(2);
+					}
 					if (step > 1) {
 						setStep((prev) => prev - 1);
 					}
@@ -25,29 +29,42 @@ export default function Home() {
 				<ArrowBackIcon sx={{ color: "#1698D9" }} />
 				Назад
 			</span>
-			<h1>Каско</h1>
-			<div className="flex flex-wrap flex-row w-full mx-[16px] gap-1 flex-shrink-0">
-				<NavChip letterInCircle="1" label="Авто" active={step === 1} />
-				<NavChip
-					letterInCircle="2"
-					label="Параметры"
-					active={step === 2}
-				/>
-				<NavChip letterInCircle="3" label="Риски" active={step === 3} />
-				<NavChip
-					letterInCircle="4"
-					label="Персональные данные"
-					active={step === 4}
-				/>
-				<NavChip
-					letterInCircle="5"
-					label="Оплата"
-					active={step === 4}
-				/>
-			</div>
+			{step !== 2.5 && (
+				<>
+					<h1>Каско</h1>
+					<div className="flex flex-wrap flex-row w-full mx-[16px] gap-1 flex-shrink-0">
+						<NavChip
+							letterInCircle="1"
+							label="Авто"
+							active={step === 1}
+						/>
+						<NavChip
+							letterInCircle="2"
+							label="Параметры"
+							active={step === 2}
+						/>
+						<NavChip
+							letterInCircle="3"
+							label="Риски"
+							active={step === 3}
+						/>
+						<NavChip
+							letterInCircle="4"
+							label="Персональные данные"
+							active={step === 4}
+						/>
+						<NavChip
+							letterInCircle="5"
+							label="Оплата"
+							active={step === 4}
+						/>
+					</div>
+				</>
+			)}
 			{step === 1 && <Step1 />}
 			{step === 2 && <Step2 />}
-			{step > 1 && <Footer />}
+			{step === 2.5 && <Step25 />}
+			{step > 1 && step !== 2.5 && <Footer />}
 		</main>
 	);
 }

@@ -1,6 +1,6 @@
 [
 	{
-		"GOSnumber": "У 222 ЛЛ 44",
+		"GOSnumber": "У 222 АА 44",
 		"make": "Нива Шевроле",
 		"model": "Калина",
 		"releaseYear": "2007",
@@ -12,20 +12,6 @@
 		"TSdocument": "СТС",
 		"PTSnumber": "160982",
 		"VIN": "1FAHP2DW1CG573712"
-	},
-	{
-		"GOSnumber": "У 555 ОО 88",
-		"make": "ГАЗель",
-		"model": "Патриот",
-		"releaseYear": "1994",
-		"power": "321 л. с.",
-		"bodyType": "универсал",
-		"gearBoxType": "автоматическая",
-		"engine": "1 л.",
-		"modification": "Базовая",
-		"TSdocument": "ЭПТС",
-		"PTSnumber": "349455",
-		"VIN": "JTJBM7FX6A5082148"
 	},
 	{
 		"GOSnumber": "У 888 ВВ 11",
