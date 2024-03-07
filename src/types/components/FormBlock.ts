@@ -4,4 +4,5 @@ export type FormBlockProps = {
 	submitBtnLabel?: string;
 	forForm?: string;
 	children: React.ReactNode;
+	onClickBtn?: () => void;
 };
