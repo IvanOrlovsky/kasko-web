@@ -9,4 +9,5 @@ export type SimpleInputProps = {
 	patternMsg?: string;
 	defaultValue?: string;
 	disabled?: boolean;
+	type?: string;
 };
