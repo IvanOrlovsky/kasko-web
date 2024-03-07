@@ -1,6 +1,5 @@
 "use client";
 import { FormBlockProps } from "@/types/components/FormBlock";
-import { useFormContext } from "react-hook-form";
 
 export default function FormBlock({
 	title,
@@ -8,8 +7,8 @@ export default function FormBlock({
 	submitBtnLabel,
 	forForm,
 	children,
+	onClickBtn,
 }: FormBlockProps) {
-	const { trigger } = useFormContext();
 	return (
 		<section className="flex flex-col gap-3 rounded-3xl bg-white pt-5 px-4 pb-5">
 			<h2 className="w-fit mb-4">{title}</h2>
@@ -18,8 +17,8 @@ export default function FormBlock({
 				<button
 					type="submit"
 					form={forForm}
-					onClick={() => trigger("todayCost")}
-					className="button  mb-5"
+					onClick={onClickBtn}
+					className="button mb-5"
 				>
 					{submitBtnLabel}
 				</button>
