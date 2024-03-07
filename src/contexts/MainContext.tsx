@@ -3,6 +3,7 @@
 import { MainContextType } from "@/types/contexts/MainContext";
 import { AutoFormValues } from "@/types/forms/AutoForm";
 import { ParametersFormValues } from "@/types/forms/ParametersForm";
+import { PersonalDataValues } from "@/types/forms/PersonalDataForm";
 import { RisksFormValues } from "@/types/forms/RisksForm";
 
 import React, { createContext, useState, useContext } from "react";
@@ -14,7 +15,9 @@ export default function MainContextProvider({
 }: {
 	children: React.ReactNode;
 }) {
-	const [step, setStep] = useState(1);
+	const [step, setStep] = useState(4);
+
+	const [showSmsInput, setShowSmsInput] = useState(false);
 
 	const [autoData, setAutoData] = useState<AutoFormValues>({
 		isCarRegistered: false,
@@ -63,11 +66,44 @@ export default function MainContextProvider({
 		techHelp: false,
 	});
 
+	const [personalData, setPersonalData] = useState<PersonalDataValues>({
+		smsCode: "",
+		isPulseClient: false,
+		phoneNumber: "",
+		surname: "",
+		name: "",
+		patronymic: "",
+		birthday: new Date().toDateString(),
+		passportNumber: "",
+		passportGivenBy: "",
+		passportGivenDate: new Date().toDateString(),
+		registrationLocation: "",
+		email: "",
+		isInsurantOwner: true,
+		ownerFullName: "",
+		ownerBirthday: new Date().toDateString(),
+		ownerPassportNumber: "",
+		ownerPassportGivenBy: "",
+		ownerPassportGivenDate: new Date().toDateString(),
+		ownerRegistrationLocation: "",
+		isInsurantDriver: true,
+		drivers: [
+			{
+				fullName: "",
+				birthday: new Date().toDateString(),
+				driverLicenceNumber: "",
+				beginOfExpDate: "",
+			},
+		],
+	});
+
 	return (
 		<MainContext.Provider
 			value={{
 				step,
 				setStep,
+				showSmsInput,
+				setShowSmsInput,
 				autoData,
 				setAutoData,
 				risksData,
@@ -76,6 +112,8 @@ export default function MainContextProvider({
 				setParamsData,
 				carFoundStatus,
 				setCarFoundStatus,
+				personalData,
+				setPersonalData,
 			}}
 		>
 			{children}
