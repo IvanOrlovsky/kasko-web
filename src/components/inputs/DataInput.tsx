@@ -12,9 +12,11 @@ import { useState } from "react";
 export default function DateInput({
 	name,
 	label,
+	disabled,
 }: {
 	name: string;
 	label: string;
+	disabled?: boolean;
 }) {
 	const { register, setValue, watch } = useFormContext();
 	const [isOpen, setIsOpen] = useState(false);
@@ -33,10 +35,11 @@ export default function DateInput({
 				onClose={() => setIsOpen(false)}
 				className="bg-[#F1F2F6] rounded"
 				label={label}
-				defaultValue={dayjs(new Date(watch(name)))}
+				value={dayjs(Date.parse(watch(name)))}
 				onChange={(value) => {
 					setValue(name, value?.toDate().toDateString());
 				}}
+				disabled={disabled ? disabled : false}
 				slots={{
 					openPickerButton: () => {
 						return (

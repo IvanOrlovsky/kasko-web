@@ -15,6 +15,7 @@ export default function SimpleInput({
 	patternMsg,
 	defaultValue,
 	disabled,
+	type,
 }: SimpleInputProps) {
 	const {
 		register,
@@ -25,11 +26,11 @@ export default function SimpleInput({
 	} = useFormContext();
 
 	return (
-		<div className="relative">
+		<div className="relative grow">
 			<input
 				id={name}
 				disabled={disabled}
-				type="text"
+				type={type ? type : "text"}
 				defaultValue={defaultValue}
 				{...register(name, {
 					onChange: () => {
@@ -72,6 +73,7 @@ export default function SimpleInput({
 				})}
 				placeholder=" "
 			/>
+
 			<label
 				unselectable="on"
 				htmlFor={name}
