@@ -13,7 +13,8 @@ import Drivers from "./Step4Blocks/Drivers";
 import { DevTool } from "@hookform/devtools";
 
 export default function PersonalData() {
-	const { personalData, setPersonalData } = useMainContext();
+	const { personalData, setPersonalData, personalStep, setStep } =
+		useMainContext();
 
 	const form = useForm<PersonalDataValues>({
 		values: { ...personalData },
@@ -21,11 +22,9 @@ export default function PersonalData() {
 	});
 
 	const onSubmit = (data: PersonalDataValues) => {
-		if (form.watch("isPulseClient")) {
-		}
-		setPersonalData(data);
+		setPersonalData((prev) => ({ ...prev, drivers: data.drivers }));
+		setStep((prev) => prev + 1);
 	};
-
 	return (
 		<FormProvider {...form}>
 			<form
@@ -33,14 +32,12 @@ export default function PersonalData() {
 				id="personal_data_form"
 				className="flex flex-col gap-4"
 			></form>
-			<Insurant />
-			{!form.watch("isPulseClient") && (
-				<>
-					<AutoOwner />
-					<Drivers />
-				</>
-			)}
-			<DevTool control={form.control} />
+
+			{personalStep === 1 && <Insurant />}
+			{personalStep === 2 && <AutoOwner />}
+			{personalStep === 3 && <Drivers />}
+
+			{/* <DevTool control={form.control} /> */}
 		</FormProvider>
 	);
 }

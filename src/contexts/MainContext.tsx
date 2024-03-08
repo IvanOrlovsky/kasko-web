@@ -19,6 +19,8 @@ export default function MainContextProvider({
 
 	const [showSmsInput, setShowSmsInput] = useState(false);
 
+	const [personalStep, setPersonalStep] = useState(1);
+
 	const [autoData, setAutoData] = useState<AutoFormValues>({
 		isCarRegistered: false,
 		GOSnumber: "",
@@ -79,14 +81,14 @@ export default function MainContextProvider({
 		passportGivenDate: new Date().toDateString(),
 		registrationLocation: "",
 		email: "",
-		isInsurantOwner: true,
+		isInsurantOwner: false,
 		ownerFullName: "",
 		ownerBirthday: new Date().toDateString(),
 		ownerPassportNumber: "",
 		ownerPassportGivenBy: "",
 		ownerPassportGivenDate: new Date().toDateString(),
 		ownerRegistrationLocation: "",
-		isInsurantDriver: true,
+		isInsurantDriver: false,
 		drivers: [
 			{
 				fullName: "",
@@ -102,6 +104,8 @@ export default function MainContextProvider({
 			value={{
 				step,
 				setStep,
+				personalStep,
+				setPersonalStep,
 				showSmsInput,
 				setShowSmsInput,
 				autoData,

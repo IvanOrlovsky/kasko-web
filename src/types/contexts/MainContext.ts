@@ -8,6 +8,8 @@ export type MainContextType = {
 	setStep: React.Dispatch<React.SetStateAction<number>>;
 	showSmsInput: boolean;
 	setShowSmsInput: React.Dispatch<React.SetStateAction<boolean>>;
+	personalStep: number;
+	setPersonalStep: React.Dispatch<React.SetStateAction<number>>;
 	autoData: AutoFormValues;
 	setAutoData: React.Dispatch<React.SetStateAction<AutoFormValues>>;
 	risksData: RisksFormValues;
