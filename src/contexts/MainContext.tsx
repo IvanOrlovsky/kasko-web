@@ -15,7 +15,7 @@ export default function MainContextProvider({
 }: {
 	children: React.ReactNode;
 }) {
-	const [step, setStep] = useState(4);
+	const [step, setStep] = useState(1);
 
 	const [showSmsInput, setShowSmsInput] = useState(false);
 
