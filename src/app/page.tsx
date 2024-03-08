@@ -39,26 +39,51 @@ export default function Home() {
 							letterInCircle="1"
 							label="Авто"
 							active={step === 1}
+							onClick={() => {
+								if (step > 1) {
+									setStep(1);
+								}
+							}}
 						/>
 						<NavChip
 							letterInCircle="2"
 							label="Параметры"
 							active={step === 2}
+							onClick={() => {
+								if (step > 2) {
+									setStep(2);
+								}
+							}}
 						/>
 						<NavChip
 							letterInCircle="3"
 							label="Риски"
 							active={step === 3}
+							onClick={() => {
+								if (step > 3) {
+									setStep(3);
+								}
+							}}
 						/>
 						<NavChip
 							letterInCircle="4"
 							label="Персональные данные"
 							active={step === 4}
+							onClick={() => {
+								if (step > 4) {
+									setStep(4);
+								}
+							}}
 						/>
 						<NavChip
 							letterInCircle="5"
 							label="Оплата"
 							active={step === 5}
+							onClick={() => {
+								if (step > 5) {
+									setStep(5);
+								}
+							}}
 						/>
 					</div>
 				</>
