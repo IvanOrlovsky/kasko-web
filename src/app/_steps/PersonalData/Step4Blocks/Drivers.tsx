@@ -4,58 +4,44 @@ import FormBlock from "@/components/FormBlock";
 import SimpleInput from "@/components/inputs/SimpleInput";
 import DateInput from "@/components/inputs/DataInput";
 import CheckBox from "@/components/inputs/CheckBoxes";
-import SmsCode from "@/components/inputs/SmsCode";
 
 import AddIcon from "@mui/icons-material/Add";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 import { useFormContext, useFieldArray } from "react-hook-form";
-import { useState } from "react";
+import { useEffect } from "react";
 import { useMainContext } from "@/contexts/MainContext";
 
 import Swal from "sweetalert2";
 
 export default function Drivers() {
-	const { setStep } = useMainContext();
-
 	const { watch, control, setValue, trigger } = useFormContext();
-
-	const [showSms, setShowSms] = useState(false);
-
+	const { personalData } = useMainContext();
 	const { fields, append, remove } = useFieldArray({
 		name: "drivers",
 		control,
 	});
 
-	if (watch("isInsurantDriver")) {
-		if (watch("surname") && watch("name") && watch("patronymic")) {
+	useEffect(() => {
+		if (watch("isInsurantDriver")) {
 			setValue(
 				"drivers.0.fullName",
-				watch("surname") +
+				personalData.surname +
 					" " +
-					watch("name") +
+					personalData.name +
 					" " +
-					watch("patronymic")
+					personalData.patronymic
 			);
+			setValue("drivers.0.birthday", personalData.birthday);
 		}
-
-		if (watch("drivers.0.birthday") != watch("birthday")) {
-			setValue("drivers.0.birthday", watch("birthday"));
-		}
-	}
+	}, [watch("isInsurantDriver")]);
 
 	return (
 		<FormBlock
 			title="Водители"
-			forForm=""
-			hasSubmitBtn={!showSms}
+			forForm="personal_data_form"
+			hasSubmitBtn={true}
 			submitBtnLabel="Продолжить"
-			onClickBtn={async () => {
-				if (await trigger()) {
-					console.log(await trigger());
-					// setShowSmsInput(true);
-				}
-			}}
 		>
 			<CheckBox
 				name="isInsurantDriver"
@@ -151,18 +137,16 @@ export default function Drivers() {
 			>
 				<AddIcon /> Добавить еще
 			</span>
-			{!showSms && (
-				<div className="kasko-subtext">
-					Нажимая кнопку «Продолжить», вы принимаете условия{" "}
-					<span
-						className="text-kasko-blue hover:underline hover:cursor-pointer"
-						onClick={() => Swal.fire("Пользовательское соглашение")}
-					>
-						пользовательского соглашения
-					</span>
-				</div>
-			)}
-			{showSms && <SmsCode name="smsCode" forForm="personal_data_form" />}
+
+			<div className="kasko-subtext">
+				Нажимая кнопку «Продолжить», вы принимаете условия{" "}
+				<span
+					className="text-kasko-blue hover:underline hover:cursor-pointer"
+					onClick={() => Swal.fire("Пользовательское соглашение")}
+				>
+					пользовательского соглашения
+				</span>
+			</div>
 		</FormBlock>
 	);
 }

@@ -6,16 +6,57 @@ import DateInput from "@/components/inputs/DataInput";
 import CheckBox from "@/components/inputs/CheckBoxes";
 
 import { useFormContext } from "react-hook-form";
+import { useMainContext } from "@/contexts/MainContext";
 
 export default function AutoOwner() {
-	const { watch } = useFormContext();
+	const { watch, trigger } = useFormContext();
+	const { setPersonalStep, setPersonalData } = useMainContext();
 
 	return (
 		<FormBlock
 			title="Владелец авто"
-			hasSubmitBtn={false}
+			hasSubmitBtn={true}
 			forForm=""
-			submitBtnLabel=""
+			submitBtnLabel="Продолжить"
+			onClickBtn={async () => {
+				if (await trigger()) {
+					if (watch("isInsurantOwner")) {
+						setPersonalData((prev) => ({
+							...prev,
+							isInsurantOwner: true,
+							ownerFullName:
+								watch("surname") +
+								" " +
+								watch("name") +
+								" " +
+								watch("patronymic"),
+							ownerBirthday: watch("birthday"),
+							ownerPassportNumber: watch("passportNumber"),
+							ownerPassportGivenBy: watch("passportGivenBy"),
+							ownerPassportGivenDate: watch("passportGivenDate"),
+							ownerRegistrationLocation: watch(
+								"registrationLocation"
+							),
+						}));
+					} else {
+						setPersonalData((prev) => ({
+							...prev,
+							isInsurantOwner: false,
+							ownerFullName: watch("ownerFullName"),
+							ownerBirthday: watch("ownerBirthday"),
+							ownerPassportNumber: watch("ownerPassportNumber"),
+							ownerPassportGivenBy: watch("ownerPassportGivenBy"),
+							ownerPassportGivenDate: watch(
+								"ownerPassportGivenDate"
+							),
+							ownerRegistrationLocation: watch(
+								"ownerRegistrationLocation"
+							),
+						}));
+					}
+					setPersonalStep((prev) => prev + 1);
+				}
+			}}
 		>
 			<CheckBox
 				name="isInsurantOwner"
