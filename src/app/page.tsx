@@ -9,6 +9,7 @@ import Step2 from "./_steps/Parameters/Step2";
 import Step25 from "./_steps/AutoEdit/Step25";
 import Step3 from "./_steps/Risks/Step3";
 import Step4 from "./_steps/PersonalData/Step4";
+import Step5 from "./_steps/Payment/Step5";
 //хуки
 import { useMainContext } from "@/contexts/MainContext";
 
@@ -93,6 +94,7 @@ export default function Home() {
 			{step === 2.5 && <Step25 />}
 			{step === 3 && <Step3 />}
 			{step === 4 && <Step4 />}
+			{step === 5 && <Step5 />}
 			{step > 1 && step !== 2.5 && <Footer />}
 		</main>
 	);

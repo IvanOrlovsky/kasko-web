@@ -10,7 +10,7 @@ import { useMainContext } from "@/contexts/MainContext";
 
 export default function AutoOwner() {
 	const { watch, trigger } = useFormContext();
-	const { setPersonalStep, setPersonalData } = useMainContext();
+	const { setPersonalStep, setPersonalData, personalData } = useMainContext();
 
 	return (
 		<FormBlock
@@ -25,18 +25,18 @@ export default function AutoOwner() {
 							...prev,
 							isInsurantOwner: true,
 							ownerFullName:
-								watch("surname") +
+								personalData.surname +
 								" " +
-								watch("name") +
+								personalData.name +
 								" " +
-								watch("patronymic"),
-							ownerBirthday: watch("birthday"),
-							ownerPassportNumber: watch("passportNumber"),
-							ownerPassportGivenBy: watch("passportGivenBy"),
-							ownerPassportGivenDate: watch("passportGivenDate"),
-							ownerRegistrationLocation: watch(
-								"registrationLocation"
-							),
+								personalData.patronymic,
+							ownerBirthday: personalData.birthday,
+							ownerPassportNumber: personalData.passportNumber,
+							ownerPassportGivenBy: personalData.passportGivenBy,
+							ownerPassportGivenDate:
+								personalData.passportGivenDate,
+							ownerRegistrationLocation:
+								personalData.registrationLocation,
 						}));
 					} else {
 						setPersonalData((prev) => ({
