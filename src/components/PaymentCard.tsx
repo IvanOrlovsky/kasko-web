@@ -73,7 +73,7 @@ export default function PaymentCard({ onSubmit }: { onSubmit: () => void }) {
 					Оплатить
 				</button>
 				<span className="kasko-subtext">
-					Нажимая кнопку "Оплатить" вы соглашаетесь с{" "}
+					Нажимая кнопку "Оплатить" вы соглашаетесь с
 					<span
 						className="underline cursor-pointer"
 						onClick={() => {
