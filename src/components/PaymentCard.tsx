@@ -15,7 +15,7 @@ export default function PaymentCard({ onSubmit }: { onSubmit: () => void }) {
 		<section className="rounded-2xl bg-indigo-900 flex flex-col my-3 ">
 			<div className="flex flex-col gap-5 m-4">
 				<span className="text-white font-roboto text-xs">
-					ООО СК "Пульс"
+					ООО СК &quot;Пульс&quot;
 				</span>
 				<span className="text-white font-roboto text-xl font-bold">
 					Оплата заказа
@@ -73,7 +73,7 @@ export default function PaymentCard({ onSubmit }: { onSubmit: () => void }) {
 					Оплатить
 				</button>
 				<span className="kasko-subtext">
-					Нажимая кнопку "Оплатить" вы соглашаетесь с
+					Нажимая кнопку &quot;Оплатить&quot; вы соглашаетесь с
 					<span
 						className="underline cursor-pointer"
 						onClick={() => {
